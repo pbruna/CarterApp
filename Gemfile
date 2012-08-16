@@ -6,7 +6,7 @@ gem 'rails', '3.2.8'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
-
+gem 'mysql2'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -18,6 +18,15 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+  gem 'bootstrap-sass'
+end
+
+group :test do
+  gem 'turn'
+end
+
+group :development do
+  gem "letter_opener"
 end
 
 gem 'jquery-rails'
@@ -36,3 +45,9 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
+gem 'devise'
+gem 'simple_form'
+gem 'high_voltage'
+gem 'bourbon'
+gem 'delayed_job'
+gem 'delayed_job_active_record'

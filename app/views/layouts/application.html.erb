@@ -8,7 +8,43 @@
 </head>
 <body>
 
-<%= yield %>
+	<div class="navbar">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="brand" href="#">
+					CarterApp
+				</a>
+				<div id="user-greet">
+					<%= link_to current_user.email, edit_user_path(current_user) %> |
+					<%= link_to "Salir", destroy_user_session_path, :method => :delete %>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid">
+	  <div class="row-fluid">
+	    <div class="span2 well" style="padding: 10px 0px">
+	      	<ul class="nav nav-list">
+			  <li class="nav-header">
+			    Navegación
+			  </li>
+			  <li> <%= link_to "Salir", destroy_user_session_path, :method => :delete %> </li>
+			</ul>
+
+	    </div>
+		<% flash.each do |name, msg| %>
+		  <div class="span9 alert alert-<%= name == :notice ? "success" : "error" %>">
+		    <a class="close" data-dismiss="alert">×</a>
+		    <%= msg %>
+		  </div>
+		<% end %>
+	    <div id="main" class="span9 well">
+	      <%= yield %>
+	    </div>
+	  </div>
+	</div>
+
+	</body>
 
 </body>
 </html>

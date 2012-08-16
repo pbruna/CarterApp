@@ -1,0 +1,49 @@
+@import "bootstrap";
+@import "bootstrap-responsive";
+
+.navbar-inner {
+	border-radius: 1px;
+	.brand {
+		font-weight: bold;
+		font-size: 32px;
+	}
+	
+	#user-greet {
+		float: right;
+		margin-top: 25px;
+	}
+}
+
+#main {
+	min-height: 300px;
+	
+	.new-resource {
+		float: right;
+		margin-top: -50px;
+	}
+	
+	.page-header {
+		padding-bottom: 5px;
+	}
+	
+	.dl-horizontal {
+		dt {
+			text-align: left;
+		}
+	}
+	
+	#description {
+		margin-top: 0px;
+		margin-bottom: 20px;
+		border: solid 1px #AAA;
+		background: whiteSmoke;
+		margin-right: -20px;
+		padding-left: 20px;
+	}
+	
+}
+
+#main.well {
+	background: white;
+	border: 1px solid #AAA;
+}
