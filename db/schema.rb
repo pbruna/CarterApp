@@ -11,7 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120816195627) do
+ActiveRecord::Schema.define(:version => 20120817230121) do
+
+  create_table "accounts", :force => true do |t|
+    t.string   "name"
+    t.string   "sasl_login"
+    t.string   "sasl_password_view"
+    t.boolean  "active"
+    t.integer  "plan_id"
+    t.integer  "address"
+    t.string   "country"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "sasl_password"
+  end
+
+  add_index "accounts", ["plan_id"], :name => "index_accounts_on_plan_id"
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -42,15 +57,12 @@ ActiveRecord::Schema.define(:version => 20120816195627) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                               :null => false
     t.datetime "updated_at",                               :null => false
-    t.integer  "plan_id"
-    t.string   "sasl_login",                               :null => false
-    t.string   "sasl_password",                            :null => false
-    t.string   "sasl_password_view",                       :null => false
     t.boolean  "active",                 :default => true, :null => false
+    t.integer  "account_id"
   end
 
+  add_index "users", ["account_id"], :name => "index_users_on_account_id"
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
-  add_index "users", ["sasl_login"], :name => "index_users_on_sasl_login"
 
 end

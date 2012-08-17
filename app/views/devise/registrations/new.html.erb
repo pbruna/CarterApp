@@ -5,7 +5,8 @@
 	  <%= f.error_notification %>
 
 	  <div class="inputs">
-	    <%= f.input :email, :required => true, :autofocus => true %>
+	 	<%= f.input :account_name, :label => "Empresa" %>
+	    <%= f.input :email, :autofocus => false %>
 	    <%= f.input :password, :required => true, :label => "Contraseña" %>
 	    <%= f.input :password_confirmation, :required => true, :label => "Confirmar Contraseña" %>
 	  </div>
