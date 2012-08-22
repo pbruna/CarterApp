@@ -1,5 +1,6 @@
-@import "bootstrap";
-@import "bootstrap-responsive";
+body {
+	background-color: #f7f7f9;
+}
 
 .navbar-inner {
 	border-radius: 1px;
@@ -16,6 +17,7 @@
 
 #main {
 	min-height: 300px;
+	padding-bottom: 50px;
 	
 	.new-resource {
 		float: right;

@@ -1,0 +1,78 @@
+// Place all the styles related to the accounts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#welcome-box {
+	color: #555666;
+}
+
+#edit-info.account {
+	margin-right: 18px;
+}
+
+#edit-info.user {
+	h4 {
+		margin-bottom: 20px;
+	}
+}
+
+#edit-info {
+	margin-left: 0px;
+	padding-bottom: 5px;
+	
+	.control-label {
+		text-align: left;
+		width: 120px;
+	}
+	
+	.controls {
+		margin-left: 20px;
+	}
+	
+	.control-group {
+		margin-bottom: 10px;
+	}
+	
+	.buttons {
+		margin-right: 17px;
+		
+		input.btn {
+			margin-left: 225px;
+			width: 115px;
+		}
+		
+	}
+	
+}
+
+#plan-banners {
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	
+	.banner {
+		display: inline-block;
+		border: solid 1px #999;
+		margin-left: 20px;
+		margin-right: 20px;
+		width: 170px;
+		padding: 10px;
+		@include border-radius(5px);
+		background-color: whitesmoke;
+		ul {
+			margin: 10px 5px 20px 5px;
+			li {
+				list-style: none;
+				margin-bottom: 5px;
+			}
+		}
+		
+		.price {
+			font-weight: normal;
+			color: #999;
+			font-size: 14px;
+		}
+		
+	}
+	
+}

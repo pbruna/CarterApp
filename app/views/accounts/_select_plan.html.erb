@@ -1,0 +1,46 @@
+<div id="select-plan" class="row-fluid">
+	<h2>Elige tu Plan</h2>
+	<p>Recuerda contratar un Plan antes de que termine el periodo de prueba para que puedas seguir utilizando CarterApp.</p>
+	<div id="plan-banners" class="row">
+		<div class="banner">
+			<h3>Lite</h3>
+			<span class="price">$25 mil/mes</span>
+			<ul>
+				<li>25 mil envíos por mes</li>
+				<li>Estadísticas en tiempo real</li>
+				<li>Soporte 8x5</li>
+			</ul>
+			<%= simple_form_for(@account, :url => {:action => :update_plan}, :html => {:class => "form-horizontal"}) do |f| %>
+				<%= f.input :plan_id, :as => :hidden, :input_html => { :value => Account::PLANS[:lite][:id] } %>
+				<%= f.button :submit, "Contratar", :class => "btn btn-success" %>
+			<% end %>
+			
+		</div>
+		<div class="banner">
+			<h3>Pyme</h3>
+			<span class="price">$50 mil/mes</span>
+			<ul>
+				<li>50 mil envíos por mes</li>
+				<li>Estadísticas en tiempo real</li>
+				<li>Soporte 24x7</li>
+			</ul>
+			<%= simple_form_for(@account, :url => {:action => :update_plan}, :html => {:class => "form-horizontal"}) do |f| %>
+				<%= f.input :plan_id, :as => :hidden, :input_html => { :value => Account::PLANS[:professional][:id] } %>
+				<%= f.button :submit, "Contratar", :class => "btn btn-success" %>
+			<% end %>	
+		</div>
+		<div class="banner">
+			<h3>Empresarial</h3>
+			<span class="price">$90 mil/mes</span>
+			<ul>
+				<li>100 mil envíos por mes</li>
+				<li>Estadísticas en tiempo real</li>
+				<li>Soporte 24x7</li>
+			</ul>
+			<%= simple_form_for(@account, :url => {:action => :update_plan}, :html => {:class => "form-horizontal"}) do |f| %>
+				<%= f.input :plan_id, :as => :hidden, :input_html => { :value => Account::PLANS[:enterprise][:id] } %>
+				<%= f.button :submit, "Contratar", :class => "btn btn-success" %>
+			<% end %>
+		</div>
+	</div>
+</div>

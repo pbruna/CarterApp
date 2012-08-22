@@ -1,0 +1,22 @@
+<% if @account.first_login? %>
+	<%= render "welcome_box" %>
+<% end %>
+
+<div id="account-overview" class="row-fluid">
+	<h1>
+		<%= @account.name %>
+		<% if @account.trial? %>
+			<small> (quedan <%= @account.trial_days_left %> días)</small>
+		<% end %>
+	</h1>
+	<%= render "account_info" %>
+	<%= render "current_user" %>
+</div>
+
+<% if @account.trial? %>
+	<%= render :partial => 'select_plan' %>
+<% end %>
+
+<% unless @account.trial? %>
+	<%= render "invoices" %>
+<% end %>

@@ -2,18 +2,18 @@ class UsersController < ApplicationController
   # before_filter :admin?, :except => [:index, :edit]
   # before_filter :admin_or_himself?, :only => [:edit]
 
-  def index
-    @users = User.all
-  end
-
-  def edit
-    @user = User.find(params[:id])
-  end
-  
-  def show
-    id = params[:id] || current_user.id
-    @user = User.find(id)
-  end
+  # def index
+  #     @users = User.all
+  #   end
+  # 
+  #   def edit
+  #     @user = User.find(params[:id])
+  #   end
+  #   
+  #   def show
+  #     id = params[:id] || current_user.id
+  #     @user = User.find(id)
+  #   end
 
   # def new
   #   @user = User.new
@@ -31,14 +31,18 @@ class UsersController < ApplicationController
   # end
 
   def update
-    @user = User.find(params[:id])
+    params[:user].delete(:password) if params[:user][:password].blank?
+    logger.debug(params)
+    @user = User.find(params[:id], :include => [:account])
+    @account = @user.account
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html {redirect_to users_path(), :notice => "Usuario actualizado correctamente"}
+        sign_in @user, :bypass => true
+        format.html {redirect_to account_path(@account), :notice => "Cambios guardados correctamente"}
         format.json {head :no_content}
       else
         flash[:error] = "No fue posible guardar los cambios"
-        format.html {render action: "edit" }
+        format.html {redirect_to account_path(@account)}
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end

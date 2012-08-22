@@ -1,0 +1,14 @@
+<div id="main-bar">
+<ul class="nav nav-pills">
+  <li><%= menu_link("dashboards", "Dashboard") %></li>
+  <li><a href="#">Cola de Correos</a></li>
+  <li><a href="#">Buscar Correos</a></li>
+  <li><%= menu_link("accounts", "Mi Cuenta") %></li>
+<% flash.each do |name, msg| %>
+  <div class="span6 flash-message  alert alert-<%= name == :notice ? "success" : "error" %>">
+    <a class="close" data-dismiss="alert">×</a>
+    <%= msg %>
+  </div>
+<% end %>
+</ul>
+</div>

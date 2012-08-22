@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120817230121) do
+ActiveRecord::Schema.define(:version => 20120821220044) do
 
   create_table "accounts", :force => true do |t|
     t.string   "name"
@@ -19,13 +19,18 @@ ActiveRecord::Schema.define(:version => 20120817230121) do
     t.string   "sasl_password_view"
     t.boolean  "active"
     t.integer  "plan_id"
-    t.integer  "address"
+    t.string   "address"
     t.string   "country"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.string   "sasl_password"
+    t.integer  "owner_id"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "rut"
   end
 
+  add_index "accounts", ["owner_id"], :name => "index_accounts_on_owner_id"
   add_index "accounts", ["plan_id"], :name => "index_accounts_on_plan_id"
 
   create_table "delayed_jobs", :force => true do |t|
@@ -59,6 +64,8 @@ ActiveRecord::Schema.define(:version => 20120817230121) do
     t.datetime "updated_at",                               :null => false
     t.boolean  "active",                 :default => true, :null => false
     t.integer  "account_id"
+    t.string   "name"
+    t.string   "phone"
   end
 
   add_index "users", ["account_id"], :name => "index_users_on_account_id"

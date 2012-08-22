@@ -1,3 +1,28 @@
+@import "bootstrap";
+@import "bootstrap-responsive";
 @import "bourbon";
 @import "public";
-@import "bootstrap_and_overrides"
+@import "accounts";
+@import "bootstrap_and_overrides";
+
+#main-bar {
+	border-bottom: 1px solid #DDD;
+	margin-bottom: 15px;
+	.nav {
+		margin-bottom: 5px;
+	}
+	
+	.nav-pills > li > a {
+		padding-top: 5px;
+		padding-bottom: 5px;
+		margin-top: 2px;
+		margin-bottom: 2px;
+		@include border-radius(0px);
+	}
+	
+	.flash-message {
+		margin-bottom: -5px;
+		margin-top: -5px;
+		float: right;
+	}
+}

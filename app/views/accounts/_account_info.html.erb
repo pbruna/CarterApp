@@ -1,0 +1,14 @@
+<div id="edit-info" class="span6 well account">
+	<div>
+	<%= simple_form_for(@account, :html => {:class => "form-horizontal"}) do |f| %>
+		<%= f.input :plan_id, :collection => @account.plans_for_select, :label_method => lambda { |a| a[:label] }, :value_method => lambda {|a| a[:value].to_i} %>
+	    <%= f.input :name, :required => true, :label => "Nombre" %>
+		<%= f.input :address, :required => true, :label => "Dirección" %>
+		<%= f.input :city, :required => true, :label => "Ciudad" %>
+		<%= f.input :rut, :required => true, :label => "RUT" %>
+		<div class="buttons">
+		<%= f.button :submit, "Guardar" %>
+		</div>
+	<% end %>
+	</div>
+</div>

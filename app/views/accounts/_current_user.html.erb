@@ -1,0 +1,12 @@
+<div id="edit-info" class="span6 well user">
+	<h4>Mis datos</h4>
+	<%= simple_form_for(@user, :html => {:class => "form-horizontal"}) do |f| %>
+	    <%= f.input :name, :required => false, :label => "Nombre" %>
+		<%= f.input :email, :required => true, :label => "Email" %>
+		<%= f.input :password, :required => false, :label => "Contraseña" %>
+		<%= f.input :phone, :required => false, :label => "Teléfono" %>
+		<div class="buttons">
+			<%= f.button :submit, "Guardar" %>
+		</div>
+	<% end %>
+</div>
