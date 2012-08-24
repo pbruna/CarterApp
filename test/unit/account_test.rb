@@ -43,9 +43,38 @@ class AccountTest < ActiveSupport::TestCase
     md5_password = Digest::MD5.hexdigest(@account.sasl_password_view)
     assert_equal(md5_password, @account.sasl_password)
   end
-  
+
   test "plan_id should be in the range of plans_id available" do
     @account.plan_id = 5
     assert(!@account.save, "Got saved whith invalid plan_id")
   end
+
+  # test "account must be active if is trial and have days or if has no debt" do
+  #   @account2 = Account.new(:name => "itlinux", :created_at => Time.new.yesterday)
+  #   assert(!@account2.active?, "Shouldn't be active")
+  # end
+
+  test "should have one invoice after selecting plan from trial" do
+    @account.plan_id = Account::PLANS[:lite][:id]
+    @account.save
+    assert_equal(1, @account.invoices.size)
+  end
+
+  test "the due_date of the first invoice should be 30 days after the end of trial date" do
+    @account.plan_id = Account::PLANS[:lite][:id]
+    @account.save
+    invoice = @account.invoices.first
+    expected_date = (@account.trial_end_date + 30)
+    assert_equal(invoice.due_date, expected_date)
+    
+  end
+
+  test "Only create invoice automatically if is a trial account" do
+    @account.plan_id = Account::PLANS[:lite][:id]
+    @account.save
+    @account.plan_id = Account::PLANS[:enterprise][:id]
+    @account.save
+    assert_equal(1, @account.invoices.size)
+  end
+
 end

@@ -1,4 +1,8 @@
+# encoding: utf-8
+
 class AccountsController < ApplicationController
+  skip_before_filter :block_inactive_accounts!
+  before_filter :display_warning_if_account_inactive
   
   def show
     @user = User.find(current_user.id, :include => :account)
@@ -32,6 +36,14 @@ class AccountsController < ApplicationController
         format.html {render action: "show"}
         format.json { render json: @account.errors, status: :unprocessable_entity }
       end
+    end
+  end
+  
+  private
+  def display_warning_if_account_inactive
+    unless current_account.active?
+      link = '<a href="#select-plan">seleccione un plan</a>'
+      flash[:error] = "Su periodo de prueba terminó, por favor #{link}.".html_safe
     end
   end
   

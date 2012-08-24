@@ -17,6 +17,5 @@
 	<%= render :partial => 'select_plan' %>
 <% end %>
 
-<% unless @account.trial? %>
-	<%= render "invoices" %>
-<% end %>
+
+<%= render "invoices" %>
