@@ -3,7 +3,9 @@
 @import "bourbon";
 @import "public";
 @import "accounts";
+@import "dashboards";
 @import "bootstrap_and_overrides";
+@import "bootstrap-datepicker";
 
 #main-bar {
 	border-bottom: 1px solid #DDD;

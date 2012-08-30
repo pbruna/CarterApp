@@ -13,7 +13,7 @@
 				<% @account.reverse_invoices.each do |invoice| %>
 					<tr>
 						<td><%= invoice.date %></td>
-						<td><%= "#{@account.plan_name_from_id(invoice.plan_id)}: #{invoice.total}" %></td>
+						<td><%= "#{@account.plan_name_from_id(invoice.plan_id)}: #{number_to_currency(invoice.total, :locale => :cl, :precision => 0, :delimiter => ".")}" %></td>
 						<td><%= invoice.status_name %></td>
 						<td><%= invoice.due_date %></td>
 						<td>

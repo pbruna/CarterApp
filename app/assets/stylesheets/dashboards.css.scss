@@ -1,3 +1,58 @@
 // Place all the styles related to the dashboards controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#dashboard-date {
+	.date-picker {
+		font-size: 16px;
+		color: #777;
+		font-weight: normal;
+		border: 0;
+		border-bottom: 1px dotted #CCC;
+		padding: 5px 5px 0px 5px;
+		width: 120px;
+		cursor: pointer;
+		margin-top: 5px;
+		@include box-shadow(0 0 0 0 #fff);
+		text-align: center;
+	}
+	
+	.change-date {
+		display: inline;
+		margin: 0px;
+	}
+	
+}
+
+#stats {
+	
+	.well {
+		background-color: white;
+		border-color: #DDD;
+	}
+	
+	.stats-header {
+		margin-top: -10px;
+		h4 {
+			border-bottom: 1px dotted #CCC;
+		}
+	}
+	
+	.content {
+		
+		margin-top: 10px;
+		tr:nth-child(odd){
+			td {
+				background-color: #E5EEFF;
+			}
+		}
+		td {
+			font: 13px/22px 'trebuchet ms',verdana,arial,sans-serif;
+		}
+		.stat-value {
+			font-weight: bold;
+			border-left: 1px dashed #CCC;
+			text-align: right;
+		}
+	}
+}

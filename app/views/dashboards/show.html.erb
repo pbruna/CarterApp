@@ -1,2 +1,25 @@
-Dashboards
-<%= current_account.name %>
+<div id="dashboard-date">
+	<h2>
+		<%= show_date(@date) %>
+		<%= form_tag "", :method => :get, :class => "change-date"  do %>
+			<%= text_field_tag :date, nil, :placeholder => "cambiar fecha", :class => "date-picker" %>
+			<%= button_tag "Aceptar", :class => "btn btn-mini", :style =>"display:none;", :id => "submit-date" %>
+		<% end %>
+	</h2>
+</div>
+
+<% if @metrics.nil? %>
+	<div class="alert" style="text-align: center; margin-top: 10px; padding: 20px;">
+		<h3>No existen datos para la fecha seleccionada</h3>
+	</div>
+<% else %>
+	<div id="stats" class="row-fluid">	
+		<%= render :partial => 'indicators' %>
+		<%= render :partial => 'monthly_graph' %>
+
+	</div>
+	<div id="stats" class="row-fluid">
+		<%= render :partial => 'top_src_emails' %>
+		<%= render :partial => 'top_dst_emails' %>
+	</div>
+<% end %>

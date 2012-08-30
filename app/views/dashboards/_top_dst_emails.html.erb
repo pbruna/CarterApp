@@ -1,0 +1,18 @@
+<div id="graph-stats" class="span6 well">
+		<div class="stats-header">
+			<h4>Destinatarios</h4>
+		</div>
+		<div class="content">
+			<table class="table table-striped table-condensed">
+				<tbody>
+					<% @metrics.top_dst_emails.each do |dst_email|%>
+					<tr>
+						<td><%= dst_email["address"]%></td>
+						<td class="stat-value"><%= display_metrics dst_email["count"]%></td>
+						<td class="stat-value"><%= show_percent dst_email["count"], @metrics.dst_emails_count%></td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>

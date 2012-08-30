@@ -30,6 +30,7 @@ group :development do
 end
 
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -51,3 +52,6 @@ gem 'high_voltage'
 gem 'bourbon'
 gem 'delayed_job'
 gem 'delayed_job_active_record'
+gem 'mongoid'
+gem 'bson_ext'
+gem 'bootstrap-datepicker-rails'

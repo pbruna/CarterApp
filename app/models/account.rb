@@ -86,8 +86,8 @@ class Account < ActiveRecord::Base
   end
   
   def create_invoice_for_trial
-    plan_name = plan_name_from_id(plan_id)
-    price = PLANS[plan_name][:price]
+    plan_key = plan_key_from_id(plan_id)
+    price = PLANS[plan_key][:price]
     due_date = trial_end_date + 30
     invoices << Invoice.create!({:active => true, :plan_id => plan_id, :total => price, :date => Date.today, :due_date => due_date})
   end

@@ -1,0 +1,33 @@
+<div id="graph-stats" class="span6 well">
+	<div class="stats-header">
+		<h4>Envíos durante <%= l Date.parse(@date), :format => :short_month_and_year%></h4>
+	</div>
+	<div id="monthly_graph" style="width: 450px; height: 243px">
+		<script type="text/javascript" charset="utf-8">
+		  $(function () {
+		    new Highcharts.Chart({
+		      chart: { renderTo: 'monthly_graph', marginLeft: 40, marginTop: 20 },
+			  title: { text: '' },
+			  credits: {enabled: false},
+			  legend: {enabled: false},
+			  xAxis: { type: 'datetime' },
+			  yAxis: {
+			      title: { text: ''}
+			   	},
+			  	// tooltip: {
+			  	// 					  formatter: function () {
+			  	// 				        return Highcharts.dateFormat("%B %e %Y", this.x) + '<br/>'
+			  	// 				        + Highcharts.numberFormat(this.y, 0, ",", ".");
+			  	// 				      }
+			  	// 					    },
+			  series: [{
+				  name: "Enviados",
+				  pointInterval: <%= 1.day * 1000 %>,
+				  pointStart: <%=  @graph_data.first[:date].at_midnight.to_i * 1000 %>,
+			      data: <%= @graph_data.map {|data| data[:sent_qty]}.inspect %>
+			    }]
+		    });
+		  });
+		</script>
+	</div>
+</div>
