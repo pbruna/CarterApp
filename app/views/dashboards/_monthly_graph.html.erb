@@ -2,7 +2,7 @@
 	<div class="stats-header">
 		<h4>Envíos durante <%= l Date.parse(@date), :format => :short_month_and_year%></h4>
 	</div>
-	<div id="monthly_graph" style="width: 450px; height: 243px">
+	<div id="monthly_graph" style="height: 243px">
 		<script type="text/javascript" charset="utf-8">
 		  $(function () {
 		    new Highcharts.Chart({
@@ -14,12 +14,14 @@
 			  yAxis: {
 			      title: { text: ''}
 			   	},
-			  	// tooltip: {
-			  	// 					  formatter: function () {
-			  	// 				        return Highcharts.dateFormat("%B %e %Y", this.x) + '<br/>'
-			  	// 				        + Highcharts.numberFormat(this.y, 0, ",", ".");
-			  	// 				      }
-			  	// 					    },
+			  	tooltip: {
+			  		formatter: function () {
+	  				     return '<span style="font-size: 10px;">' + 
+						  Highcharts.dateFormat("%B %e %Y", this.x) + 
+						'</span><br/><span style="fill:#4572A7">Envíos</span>:<strong>'
+				        + Highcharts.numberFormat(this.y, 0, ",", ".") + '</strong>';
+				     }
+				},
 			  series: [{
 				  name: "Enviados",
 				  pointInterval: <%= 1.day * 1000 %>,

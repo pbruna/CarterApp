@@ -2,7 +2,7 @@ Carterapp::Application.routes.draw do
   root :to => "dashboards#show"
   devise_for :users
   resources :users, :except => [:index, :show]
-  resources :dashboards, :except => :index
+  resources :requests
   resources :accounts, :except => :index
   match "/accounts/:id/update_plan", :controller => "accounts", :action => "update_plan"
   match "/accounts", :controller => "accounts", :action => "show"

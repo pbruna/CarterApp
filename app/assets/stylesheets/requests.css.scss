@@ -1,0 +1,38 @@
+// Place all the styles related to the requests controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+input[type="text"].email {
+	width: 20%;
+}
+
+input[type="text"].date {
+	width: 9%;
+	text-align: center;
+}
+
+#requests {
+	.stats {
+		padding-left: 10px;
+		padding-top: 7px;
+	}
+	
+	.request-row {
+		cursor: pointer;
+	}
+}
+
+#search-bar {
+	margin-top: -15px;
+	padding-top: 15px;
+	border-left: solid 1px #CCC;
+	border-right: solid 1px #CCC;
+	border-bottom: solid 1px #CCC;
+	margin-bottom: 20px;
+	background-color: #EEE;
+	text-align: center;
+	
+	.btn {
+		margin-left: 5px;
+	}
+}

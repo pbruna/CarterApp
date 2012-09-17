@@ -29,10 +29,12 @@ class MetricsDaily
     end
   end
 
-  def self.data_for_monthly_graph(account = "", days_ago = 30)
+  def self.data_for_monthly_graph(account = "", month )
+    month ||= Time.now.month
     ary = Array.new
-    bson_start_time = time_to_bson(Time.now.ago(3600*24*days_ago))
-    bson_end_time = time_to_bson()
+    month_date = Time.now.months_ago(Time.now.month - month)
+    bson_start_time = time_to_bson(month_date.beginning_of_month)
+    bson_end_time = time_to_bson(month_date.end_of_month)
     result = where(:account_id => account).gte(:_id => bson_start_time)
              .lte(:_id => bson_end_time).only(:sent_qty, :sent_failed_qty, :date, :_id)
     result.each do |r|
