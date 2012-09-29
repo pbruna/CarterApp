@@ -2,27 +2,28 @@
 <h2>Traza</h2>
 	<table class="table table-striped table-condensed">
 		<tr>
+			<th style="width: 175px;"></th>
 			<th>Para</th>
-			<th>Fecha</th>
-			<th style="text-align: right; padding-right: 10px">Tiempo</th>
-			<th>Destino</th>
-			<th>Estado</th>
+			<th style="padding-left: 10px; padding-right: 30px; text-align: right;">Tiempo</th>
 			<th>Respuesta</th>
 		</tr>
 		<% @request.messages.each do |message| %>
 			<tr>
-				<td><%= message["dst_email_address"] %></td>
-				<td><%= l message["created_at"].to_date %> - 
-				<%= l message["created_at"], :format => :time_only%></td>
-				<td style="text-align: right; padding-right: 10px"><%= message["delay"] %>s</td>
 				<td>
+					<%= l message["created_at"].to_date %> - <%= l message["created_at"], :format => :time_only%>
+					<br/>
+					<span class="label <%= message["status"] %>"><%= message["status"] %></span>
+				</td>					
+				<td>
+					<%= message["dst_email_address"] %>
+					<br/>
 					<%= "#{message['dst_server_ipaddress']}:#{message['dst_port'].to_i}" %>
-					<% unless message["dst_server_name"].blank? %> 
-						(<%= message["dst_server_name"] %> )
-					<% end %>
+					<%= "(#{message['dst_server_name']})" %>
 				</td>
-				<td><%= message["status"] %></td>
-				<td><%= message["response_text"] %></td>
+				<td style="text-align: right; padding-right: 30px;">
+					<%= number_with_precision message["delay"], :precision => 1 %>s
+				</td>
+				<td><%= display_response_text message["response_text"] %></td>
 			</tr>
 		<% end %>
 	</table>

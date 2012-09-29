@@ -21,7 +21,7 @@ class MetricsDaily
         :request_qty,
         :request_bytes,
         :sent_qty,
-        :sent_failed_qty,
+        :failed_qty,
         :dst_emails,
         :src_emails,
         :blocked_qty

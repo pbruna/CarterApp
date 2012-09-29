@@ -106,3 +106,24 @@ input[type="text"].date {
 		background-color: #B94A48;
 	}
 }
+
+#sents {
+	table {
+		td {
+			.sent {
+				background-color: #468847;
+				font-weight: normal;
+			}
+			
+			.bounced {
+				background-color: #B94A48;
+				font-weight: normal;
+			}
+			
+			.deferred {
+				background-color: #3A87AD;
+				font-weight: normal;
+			}
+		}
+	}
+}

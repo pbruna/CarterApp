@@ -29,5 +29,10 @@ module RequestsHelper
     return emails.join(", ") if emails.size < limit
     render :partial => "dst_emails", :locals => {:emails => emails, :limit => limit}
   end
+  
+  def display_response_text(response_text)
+    return response_text unless response_text.match(/^host.*said:/)
+    response_text.split(/said:/)[1] + ")"
+  end
 
 end
