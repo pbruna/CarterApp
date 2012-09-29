@@ -3,6 +3,7 @@ class RequestsController < ApplicationController
   def show
     account_id = current_account.sasl_login
     @request = Request.where(account_id: account_id).find(params[:id])
+    @delivery_stats = @request.messages.delivery_stats if @request.messages.size > 10
   end
 
   def index

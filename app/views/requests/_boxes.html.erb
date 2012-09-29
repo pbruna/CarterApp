@@ -15,5 +15,28 @@
 					<%= request_human_size @request %>
 				</div>
 			</td>
+		</tr>
+		<% if @request.dst_email_address.size > 10 %>
+			<tr>
+				<td>
+					<div id="request-sent" class="box">
+						<%= @delivery_stats[:sent] %>
+						<h3>enviados</h3>
+					</div>
+				</td>
+				<td>
+					<div id="request-deferred" class="box">
+						<%= @delivery_stats[:deferred] %>
+						<h3>enconlados</h3>
+					</div>
+				</td>
+				<td>
+					<div id="request-bounced" class="box">
+						<%= @delivery_stats[:bounced] %>
+						<h3>rebotes</h3>
+					</div>
+				</td>
+			</tr>
+		<%end %>
 	</table>
 	</div>

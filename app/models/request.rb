@@ -1,6 +1,7 @@
 class Request
   include Mongoid::Document
   embeds_one :amavis_data, class_name: "AmavisData"
+  embeds_many :messages
   
   DEFAULT_PAGE_LIMIT = 50
   

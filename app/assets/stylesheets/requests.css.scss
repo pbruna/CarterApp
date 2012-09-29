@@ -105,6 +105,34 @@ input[type="text"].date {
 	.request-important {
 		background-color: #B94A48;
 	}
+	
+	#request-sent {
+		background-color: #ECECEC;
+		color: black;
+		padding-top: 20px;
+		font-size: 30px;
+		h3 {
+			font-weight: normal;
+		}
+	}
+	
+	#request-bounced {
+		background-color: black;
+		padding-top: 20px;
+		font-size: 30px;
+		h3 {
+			font-weight: normal;
+		}
+	}
+	
+	#request-deferred {
+		background-color: #81AA2C;
+		padding-top: 20px;
+		font-size: 30px;
+		h3 {
+			font-weight: normal;
+		}
+	}
 }
 
 #sents {
