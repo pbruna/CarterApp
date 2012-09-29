@@ -24,5 +24,10 @@ module RequestsHelper
     return "#{number_with_precision(seconds, :precision => 1)}<small> s</small>".html_safe if seconds < 91
     (Time.at(seconds).gmtime.strftime('%R:%S') + "<h3> </h3>").html_safe
   end
+  
+  def display_dst_emails(emails, limit = 10)
+    return emails.join(", ") if emails.size < limit
+    render :partial => "dst_emails", :locals => {:emails => emails, :limit => limit}
+  end
 
 end

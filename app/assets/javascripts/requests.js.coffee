@@ -7,3 +7,6 @@ jQuery ->
 		language: 'es'
 		weekStart: 1
 		autoclose: true
+		
+	$('#toggle_all_dst_emails').click () ->
+		$("#rest_dst_emails").toggle()
