@@ -1,0 +1,19 @@
+<div id="boxes">
+	<table>
+		<tr>
+			<td>
+				<div id="request-status" class="box request-<%= request_css_class(@request) %>">
+					<%= @request.status_name %>
+				</div>
+			</td>
+			<td><div id="request-delay" class="box">
+				<%= seconds_to_human_time @request.elapsed_time %>
+				</div>
+			</td>
+			<td>
+				<div id="request-size" class="box">
+					<%= request_human_size @request %>
+				</div>
+			</td>
+	</table>
+	</div>

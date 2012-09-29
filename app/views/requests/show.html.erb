@@ -1,0 +1,9 @@
+<%#= render :partial => 'search_form' %>
+<h1><%= @request.queue_id %></h1>
+<div id="request" class="row">
+	<%= render :partial => 'details' %>
+	<%= render :partial => 'boxes' %>
+</div>
+<% if @request.respond_to?(:messages) %>
+	<%= render :partial => 'sents' %>
+<% end %>

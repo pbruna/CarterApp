@@ -1,0 +1,29 @@
+<div id="sents">
+<h2>Traza</h2>
+	<table class="table table-striped table-condensed">
+		<tr>
+			<th>Para</th>
+			<th>Fecha</th>
+			<th style="text-align: right; padding-right: 10px">Tiempo</th>
+			<th>Destino</th>
+			<th>Estado</th>
+			<th>Respuesta</th>
+		</tr>
+		<% @request.messages.each do |message| %>
+			<tr>
+				<td><%= message["dst_email_address"] %></td>
+				<td><%= l message["created_at"].to_date %> - 
+				<%= l message["created_at"], :format => :time_only%></td>
+				<td style="text-align: right; padding-right: 10px"><%= message["delay"] %>s</td>
+				<td>
+					<%= "#{message['dst_server_ipaddress']}:#{message['dst_port'].to_i}" %>
+					<% unless message["dst_server_name"].blank? %> 
+						(<%= message["dst_server_name"] %> )
+					<% end %>
+				</td>
+				<td><%= message["status"] %></td>
+				<td><%= message["response_text"] %></td>
+			</tr>
+		<% end %>
+	</table>
+</div>

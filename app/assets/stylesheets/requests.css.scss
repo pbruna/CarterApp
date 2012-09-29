@@ -36,3 +36,73 @@ input[type="text"].date {
 		margin-left: 5px;
 	}
 }
+
+
+#request {
+	border: 1px solid #DDE;
+	margin-top:10px;
+	margin-left: 1px;
+	padding: 10px;
+	margin-bottom: 20px;
+	
+	#details {
+		table {
+			width: 95%;
+			
+			.value {
+				font-weight: bold;
+				border-left: 1px dashed #CCC;
+				padding-left: 10px;
+			}
+		}
+		padding-top: 5px;
+	}
+	
+	#boxes {
+		margin-bottom: 20px;
+		
+		td {
+			padding: 5px;
+		}
+	}
+	
+	.box {
+		border: 3px solid;
+		padding: 10px;
+		text-align: center;
+		font-size: 20px;
+		font-weight: bold;
+		color: white;
+		border-color: #333;
+		min-height: 40px;
+		padding-top: 25px;
+		border-radius: 4px;
+		width: 140px;
+	}
+	
+	#request-delay {
+		background-color: #08C;
+		font-size: 30px;
+		small {
+			font-weight: normal;
+			font-size: 18px;
+		}
+	}
+	
+	#request-size {
+		background-color: #999;
+		font-size: 30px;
+	}
+	
+	.request-success {
+		background-color: #468847;
+		font-size: 25px;
+	}
+	.request-warning {
+		background-color: #F89406;
+	}
+	
+	.request-important {
+		background-color: #B94A48;
+	}
+}

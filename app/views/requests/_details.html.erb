@@ -1,0 +1,39 @@
+<div id="details" class="span6">
+
+	<table class="table table-striped table-condensed">
+		<tr>
+			<td>De</td>
+			<td class="value"><%= @request.src_email_address %></td>
+		</tr>
+		<tr>
+			<td>Para</td>
+			<td class="value"><%= @request.dst_email_address.join(", ") %></td>
+		</tr>
+		<tr>
+			<td>Origen</td>
+			<td class="value">
+				<%= @request.src_ipaddress %>
+				<% unless @request.src_hostname.blank? %> 
+					(<%= @request.src_hostname %> )
+				<% end %>
+			</td>
+		</tr>
+		<tr>
+			<td>Fecha</td>
+			<td class="value">
+				<%= l @request.created_at.to_date, :format => :month_day_year %> - 
+				<%= l @request.created_at, :format => :time_only%>
+			</td>
+		</tr>
+		<tr>
+			<td>Termino</td>
+			<td class="value">
+				<% unless @request.closed_at.nil? %>
+					<%= l @request.closed_at.to_date, :format => :month_day_year %> - 
+					<%= l @request.closed_at, :format => :time_only%>
+				<% end %>
+			</td>
+		</tr>
+	</table>
+
+</div>

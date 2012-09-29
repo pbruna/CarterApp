@@ -2,6 +2,7 @@ class RequestsController < ApplicationController
 
   def show
     account_id = current_account.sasl_login
+    @request = Request.where(account_id: account_id).find(params[:id])
   end
 
   def index

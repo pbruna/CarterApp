@@ -6,8 +6,8 @@ module DashboardsHelper
   end
   
   def show_date(date)
-    return "Hoy" if date.nil? || Date.parse(date) == Date.today
-    l Date.parse(@date), :format => :short
+    return "Hoy" if date.nil? || date == Date.today
+    l @date, :format => :short
   end
   
   def show_percent(value,total)

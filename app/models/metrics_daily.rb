@@ -10,9 +10,10 @@ class MetricsDaily
   field :sent_qty, type: Integer
   field :sent_failed_qty, type: Integer
 
+  index({account_id: 1, date: 1})
 
   def self.find_for_dashboard(date, account_id)
-    date ||= Date.today.to_s
+    date ||= Date.today
     begin
       only(
         :_id,
@@ -22,8 +23,9 @@ class MetricsDaily
         :sent_qty,
         :sent_failed_qty,
         :dst_emails,
-        :src_emails
-      ).find_by(account_id: account_id, date: date)
+        :src_emails,
+        :blocked_qty
+      ).find_by(account_id: account_id, date: date.to_s)
     rescue Exception => e
       nil
     end
@@ -36,9 +38,9 @@ class MetricsDaily
     bson_start_time = time_to_bson(month_date.beginning_of_month)
     bson_end_time = time_to_bson(month_date.end_of_month)
     result = where(:account_id => account).gte(:_id => bson_start_time)
-             .lte(:_id => bson_end_time).only(:sent_qty, :sent_failed_qty, :date, :_id)
+             .lte(:_id => bson_end_time).only(:sent_qty, :sent_failed_qty, :date, :_id, :blocked_qty)
     result.each do |r|
-      ary << {date: Date.parse(r.date), sent_qty: r.sent_qty, sent_failed_qty: r.sent_failed_qty }
+      ary << {date: Date.parse(r.date), sent_qty: r.sent_qty, sent_failed_qty: r.sent_failed_qty, blocked_qty: r.blocked_qty }
     end
     ary
   end
@@ -49,6 +51,10 @@ class MetricsDaily
 
   def src_emails_count
     src_emails.size
+  end
+  
+  def blocked_qty
+    read_attribute(:blocked_qty) || 0
   end
 
   def top_dst_emails(limit = 10)
