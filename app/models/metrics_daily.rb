@@ -15,20 +15,14 @@ class MetricsDaily
   def self.find_for_dashboard(date, account_id)
     date ||= Date.today
     begin
-      only(
-        :_id,
-        :date,
-        :request_qty,
-        :request_bytes,
-        :sent_qty,
-        :failed_qty,
-        :dst_emails,
-        :src_emails,
-        :blocked_qty
-      ).find_by(account_id: account_id, date: date.to_s)
+      find_by(account_id: account_id, date: date.to_s)
     rescue Exception => e
       nil
     end
+  end
+  
+  def self.last_date_with_data(account_id)
+    where(account_id: account_id).last.date
   end
 
   def self.data_for_monthly_graph(account = "", month )
