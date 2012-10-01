@@ -3,8 +3,18 @@
 	<table class="table table-striped table-condensed">
 		<tr>
 			<td>De</td>
-			<td class="value"><%= @request.src_email_address %></td>
+			<td class="value">
+				<%= @request.src_email_address %>
+			</td>
 		</tr>
+		<% if @request.sasl_username %>
+			<tr>
+				<td>SASL</td>
+				<td class="value">
+					<%= @request.sasl_username %>
+				</td>
+			</tr>
+		<% end %>
 		<tr>
 			<td>Para</td>
 			<td class="value"><%= display_dst_emails @request.dst_email_address %></td>

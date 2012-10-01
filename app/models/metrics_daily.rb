@@ -58,6 +58,10 @@ class MetricsDaily
   def top_src_emails(limit = 10)
     src_emails.sort_by {|x| -x["count"]}.slice(0..(limit - 1))
   end
+  
+  def failed_qty
+    read_attribute(:failed_qty) || 0
+  end
 
   private
     def sort_on_db(document_array, limit = 10)

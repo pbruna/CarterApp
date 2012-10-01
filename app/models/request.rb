@@ -19,8 +19,10 @@ class Request
   
   scope :start_date, ->(date) { where(:created_at.gte => Time.parse(date).beginning_of_day.utc) }
   scope :end_date, ->(date) { where(:created_at.lte => Time.parse(date).end_of_day.utc) }
-  scope :dst_email_address, ->(address) { where(:dst_email_address.in => [address])}
-  scope :src_email_address, ->(address) { where(:src_email_address => address)}
+  #scope :dst_email_address, ->(address) { where(:dst_email_address.in => [address])}
+  scope :dst_email_address, ->(address) { where(:dst_email_address.in => [/#{address}/i])}
+  #scope :src_email_address, ->(address) { where(:src_email_address => address)}
+  scope :src_email_address, ->(address) { where(:src_email_address => /#{address}/i) }
   
   def self.last_for_account(account_id, qty = DEFAULT_PAGE_LIMIT)
     begin
@@ -99,6 +101,10 @@ class Request
   
   def size
     read_attribute(:size) || 0
+  end
+  
+  def sasl_username
+    read_attribute(:sasl_username) || nil
   end
   
   def elapsed_time
