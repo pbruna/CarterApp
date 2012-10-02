@@ -34,5 +34,9 @@ module RequestsHelper
     return response_text unless response_text.match(/^host.*said:/)
     response_text.split(/said:/)[1] + ")"
   end
+  
+  def sort_table(messages = 0)
+    return "tablesorter" if messages.size > 10
+  end
 
 end

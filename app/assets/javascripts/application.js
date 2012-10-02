@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.all
-//= require jquery.tablesorter.pager
+//= require jquery.tablesorter.min
 //= require highcharts
 //= require bootstrap
 //= require bootstrap-datepicker

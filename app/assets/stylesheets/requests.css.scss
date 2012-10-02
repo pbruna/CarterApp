@@ -136,6 +136,25 @@ input[type="text"].date {
 }
 
 #sents {
+	table.tablesorter{
+		th.header {
+			background-image: url("tablesorter/bg.gif");
+			cursor: pointer; 
+			font-weight: bold; 
+			background-repeat: no-repeat; 
+			background-position: center left; 
+			padding-left: 20px;
+		}
+		
+		th.headerSortDown { 
+		    background-image: url("tablesorter/desc.gif"); 
+		}
+		
+		th.headerSortUp { 
+		    background-image: url("tablesorter/asc.gif"); 
+		}
+		
+	}
 	table {
 		td {
 			.sent {
