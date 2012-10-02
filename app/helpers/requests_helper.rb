@@ -1,8 +1,8 @@
 module RequestsHelper
 
-  def request_search_field(label, placeholder = '', css_class = '', param = '')
+  def request_search_field(label, placeholder = '', css_class = '', param = '', autofocus = false)
     default_value = params[:search].nil? ? nil : params[:search][param.to_sym]
-    "<span class='add-on'>#{label}</span>#{text_field_tag "search[#{param}]", default_value, :class => css_class, :placeholder => placeholder}".html_safe
+    "<span class='add-on'>#{label}</span>#{text_field_tag "search[#{param}]", default_value, :class => css_class, :placeholder => placeholder, :autofocus => autofocus}".html_safe
   end
 
   def request_label(request)
@@ -20,7 +20,7 @@ module RequestsHelper
   end
   
   def seconds_to_human_time(seconds)
-    return "" if seconds.nil?
+    return "0<small> s</small>".html_safe if seconds.nil?
     return "#{number_with_precision(seconds, :precision => 1)}<small> s</small>".html_safe if seconds < 91
     (Time.at(seconds).gmtime.strftime('%R:%S') + "<h3> </h3>").html_safe
   end

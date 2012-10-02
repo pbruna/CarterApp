@@ -1,30 +1,38 @@
-<div id="sents">
-<h2>Traza</h2>
-	<table class="table table-striped table-condensed">
-		<tr>
-			<th style="width: 175px;"></th>
-			<th>Para</th>
-			<th style="padding-left: 10px; padding-right: 30px; text-align: right;">Tiempo</th>
-			<th>Respuesta</th>
-		</tr>
-		<% @request.messages.each do |message| %>
+
+	<div id="sents">
+	<h2>Traza</h2>
+		<table id="table_sents" class="table table-striped table-condensed">
 			<tr>
-				<td>
-					<%= l message["created_at"].to_date %> - <%= l message["created_at"], :format => :time_only%>
-					<br/>
-					<span class="label <%= message["status"] %>"><%= message["status"] %></span>
-				</td>					
-				<td>
-					<%= message["dst_email_address"] %>
-					<br/>
-					<%= "#{message['dst_server_ipaddress']}:#{message['dst_port'].to_i}" %>
-					<%= "(#{message['dst_server_name']})" %>
-				</td>
-				<td style="text-align: right; padding-right: 30px;">
-					<%= number_with_precision message["delay"], :precision => 1 %>s
-				</td>
-				<td><%= display_response_text message["response_text"] %></td>
+				<th style="width: 175px;"></th>
+				<th>Para</th>
+				<th style="padding-left: 10px; padding-right: 30px; text-align: right;">Tiempo</th>
+				<th>Respuesta</th>
 			</tr>
-		<% end %>
-	</table>
-</div>
+			<% if @request.status == "reject"%>
+				<td/>
+				<td><%= @request.dst_email_address.join(", ") %></td>
+				<td style="text-align: right; padding-right: 30px;">0s</td>
+				<td><%= @request.response_text %></td>
+			<% else %>
+			<% @request.messages.each do |message| %>
+				<tr>
+					<td>
+						<%= l message["created_at"].to_date %> - <%= l message["created_at"], :format => :time_only%>
+						<br/>
+						<span class="label <%= message["status"] %>"><%= message["status"] %></span>
+					</td>					
+					<td>
+						<%= message["dst_email_address"] %>
+						<br/>
+						<%= "#{message['dst_server_ipaddress']}:#{message['dst_port'].to_i}" %>
+						<%= "(#{message['dst_server_name']})" %>
+					</td>
+					<td style="text-align: right; padding-right: 30px;">
+						<%= number_with_precision message["delay"], :precision => 1 %>s
+					</td>
+					<td><%= display_response_text message["response_text"] %></td>
+				</tr>
+			<% end %>
+		</table>
+	</div>
+<% end %>

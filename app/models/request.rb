@@ -64,6 +64,7 @@ class Request
   # the next one too: they are coupled!! :(
   def status_name
     return amavis_result if blocked_by_amavis?
+    return "Ignorado" if status == "reject"
     return "En cola" if running?
     "Procesado"
   end
@@ -109,6 +110,10 @@ class Request
   
   def elapsed_time
     read_attribute(:delay)
+  end
+  
+  def status
+    read_attribute(:status) || ""
   end
   
 end
