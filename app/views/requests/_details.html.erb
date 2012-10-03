@@ -44,7 +44,7 @@
 				<% end %>
 			</td>
 		</tr>
-		<% if @request.amavis_checked? && @request.amavis_status.downcase != "passed" %>
+		<% if @request.amavis_checked? %>
 			<tr>
 				<td>Resultado AS/AV</td>
 				<td class="value">
