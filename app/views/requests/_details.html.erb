@@ -44,6 +44,20 @@
 				<% end %>
 			</td>
 		</tr>
+		<% if @request.amavis_checked? && @request.amavis_status.downcase != "passed" %>
+			<tr>
+				<td>Resultado AS/AV</td>
+				<td class="value">
+					<%= "#{@request.amavis_status} #{@request.amavis_data.amavis_result}" %>
+					<%= "(#{number_with_precision @request.amavis_data.amavis_hits, :precision => 1} puntos)" unless @request.amavis_data.amavis_hits.nil? %>
+				</td>
+			</tr>
+			<% unless @request.amavis_data.quarantine_file.nil? %>
+				<td>Cuarentena</td>
+				<td class="value"><%= @request.amavis_data.quarantine_file %></td>
+			<% end%>
+			<tr>
+		<% end %>
 	</table>
 
 </div>

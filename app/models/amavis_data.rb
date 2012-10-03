@@ -6,4 +6,8 @@ class AmavisData
     where(status: status)
   end
   
+  def quarantine_file
+    read_attribute(:quarantine_file) || nil
+  end
+  
 end
