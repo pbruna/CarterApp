@@ -11,6 +11,24 @@ input[type="text"].date {
 	text-align: center;
 }
 
+#search-resume {
+	text-align: right;
+	margin-top: 10px;
+	
+	.success {
+		color: #468847;
+	}
+	
+	.warning {
+		color: #F89406;
+	}
+	
+	.important {
+		color: #AD2220;
+	}
+	
+}
+
 #requests {
 	.stats {
 		padding-left: 10px;
@@ -70,7 +88,7 @@ input[type="text"].date {
 		border: 3px solid;
 		padding: 10px;
 		text-align: center;
-		font-size: 30px;
+		font-size: 26px;
 		font-weight: bold;
 		color: white;
 		border-color: #333;

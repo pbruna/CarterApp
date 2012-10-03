@@ -1,0 +1,6 @@
+<div id="search-resume">
+	<%= display_matches_qty(resume) %> Resultados |
+	<% resume.each do |status, data| %>
+		<span class="<%= data[:css_class]%>"><%= "#{number_with_delimiter data[:count]} #{status.pluralize(data[:count])}" %> </span> |
+	<% end %>
+</div>

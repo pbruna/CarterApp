@@ -6,6 +6,7 @@
 		<h3>No se encontraron correos</h3>
 	</div>
 <% else %>
+<%= display_search_resume @search_resume %>
 <%= render :partial => 'requests' %>
 
 <% end %>

@@ -51,12 +51,16 @@ class MetricsDaily
     read_attribute(:blocked_qty) || 0
   end
 
+  # email_hash = {address: xxxxx, count: xx}
+  # we negate email_hash (-email_hash) to get the inverse order
   def top_dst_emails(limit = 10)
-    dst_emails.sort_by {|x| -x["count"]}.slice(0..(limit - 1))
+    dst_emails.sort_by {|email_hash| -email_hash["count"]}.slice(0..(limit - 1))
   end
 
+  # email_hash = {address: xxxxx, count: xx}
+  # we negate email_hash (-email_hash) to get the inverse order
   def top_src_emails(limit = 10)
-    src_emails.sort_by {|x| -x["count"]}.slice(0..(limit - 1))
+    src_emails.sort_by {|email_hash| -email_hash["count"]}.slice(0..(limit - 1))
   end
   
   def failed_qty

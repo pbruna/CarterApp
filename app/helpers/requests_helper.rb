@@ -30,6 +30,11 @@ module RequestsHelper
     render :partial => "dst_emails", :locals => {:emails => emails, :limit => limit}
   end
   
+  def display_search_resume(resume)
+    return if resume.nil?
+    render :partial => "search_resume", :locals => {:resume => resume}
+  end
+  
   def display_response_text(response_text)
     return response_text unless response_text.match(/^host.*said:/)
     response_text.split(/said:/)[1] + ")"
@@ -37,6 +42,10 @@ module RequestsHelper
   
   def sort_table(messages = 0)
     return "tablesorter" if messages.size > 10
+  end
+  
+  def display_matches_qty(resume_search)
+    number_with_delimiter resume_search.values.map {|ha| ha[:count]}.sum(:&)
   end
 
 end

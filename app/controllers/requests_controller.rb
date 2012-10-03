@@ -15,6 +15,7 @@ class RequestsController < ApplicationController
       redirect_to requests_path
     else
       @requests = Request.search(account_id, params[:search])
+      @search_resume = Request.search_resume(account_id, params[:search]) if @requests.size > 10
     end
 
   end
