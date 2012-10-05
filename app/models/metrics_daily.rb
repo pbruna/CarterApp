@@ -22,7 +22,7 @@ class MetricsDaily
   end
   
   def self.last_date_with_data(account_id)
-    where(account_id: account_id).last.date
+    where(account_id: account_id).last.try(:date) || nil
   end
 
   def self.data_for_monthly_graph(account = "", month )
@@ -44,11 +44,15 @@ class MetricsDaily
   end
 
   def src_emails_count
-    src_emails.size
+    src_emails.size || 0
   end
   
   def blocked_qty
     read_attribute(:blocked_qty) || 0
+  end
+  
+  def src_emails
+    read_attribute(:src_emails) || []
   end
 
   # email_hash = {address: xxxxx, count: xx}

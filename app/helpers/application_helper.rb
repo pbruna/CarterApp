@@ -4,11 +4,11 @@ module ApplicationHelper
     current_user.account
   end
 
-  def menu_link(controller, title)
+  def menu_link(controller, title, param = nil)
     link = ""
     link << "#{controller}_path".downcase
-    ccs_class = params[:controller] == controller ? "active" : ""
-    "<li class='#{ccs_class}'>#{link_to title, send(link)}</li>".html_safe
+    ccs_class = params[:controller] == controller.pluralize ? "active" : ""
+    "<li class='#{ccs_class}'>#{link_to title, send(link, param)}</li>".html_safe
   end
 
   def button_link(opts={})

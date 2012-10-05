@@ -33,7 +33,7 @@ class UsersController < ApplicationController
   def update
     params[:user].delete(:password) if params[:user][:password].blank?
     logger.debug(params)
-    @user = User.find(params[:id], :include => [:account])
+    @user = User.find(params[:id])
     @account = @user.account
     respond_to do |format|
       if @user.update_attributes(params[:user])

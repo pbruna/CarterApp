@@ -1,26 +1,16 @@
-class Account
-  include Mongoid::Document
-  include Mongoid::Timestamps::Created
-  include Mongoid::Timestamps::Updated
-
-  field :owner_id, type: Moped::BSON::ObjectId
-  field :name, type: String
-  field :active, type: Boolean
-  field :plan_id, type: Integer
-  field :address, type: String
-  field :country, type: String
-  field :address2, type: String
-  field :city, type: String
-  field :rut, type: String
-
+# encoding: UTF-8
+class Account < ActiveRecord::Base
   before_create :set_trial_plan_and_active
+  before_create :set_sasl_login
+  before_create :set_sasl_password
   before_update  :create_invoice_if_trial, :if => Proc.new {|account| account.plan_id_changed?}
-  before_destroy :delete_data
-  #attr_accessible :active, :address, :country, :id, :name, :plan_id, :sasl_login, :city, :rut
+  before_destroy {|record| User.destroy_all "account_id = #{record.id}"}
+  attr_accessible :active, :address, :country, :id, :name, :plan_id, :sasl_login, :city, :rut
   validates_presence_of :name
   validates_uniqueness_of :name, :case_sensitive => false
+  validates_uniqueness_of :sasl_login, :case_sensitive => false
   validate :plan_id_number, :on => :update
-  has_many :users, :inverse_of => :account
+  has_many :users
   has_many :invoices
 
   PLANS = {
@@ -31,15 +21,11 @@ class Account
   }
 
   SASL_PASSWORD_LENGTH=10
-
+  
   def reverse_invoices
     invoices.reverse
   end
   
-  def owner
-    User.find(owner_id)
-  end
-
   def plans_for_select
     if trial?
       PLANS.each_key.to_a.map {|k| {:value => PLANS[k][:id], :label => PLANS[k][:name].titleize}}
@@ -48,11 +34,11 @@ class Account
       PLANS.each_key.to_a.map {|k| {:value => PLANS[k][:id], :label => PLANS[k][:name].titleize}}[1..3]
     end
   end
-
+  
   def plan_key_from_id(id)
     PLANS.select{|key, hash| hash[:id] == id}.keys.first
   end
-
+  
   def plan_name_from_id(id)
     PLANS[plan_key_from_id(id)][:name]
   end
@@ -62,11 +48,11 @@ class Account
     return false if trial? && !trial_current?
     true
   end
-
+  
   def has_invoices?
     invoices.size > 0
   end
-
+  
   def has_debt?
     false
   end
@@ -74,17 +60,21 @@ class Account
   def trial?
     plan_id == PLANS[:trial][:id]
   end
-
+  
   def trial_current?
     trial_days_left > 0
   end
-
+  
   def trial_end_date
     (created_at + (3600*24*PLANS[:trial][:days])).to_date
   end
 
   def trial_days_left
     ( trial_end_date - Date.today).to_i
+  end
+
+  def owner
+    User.find(owner_id)
   end
 
   def first_login?
@@ -94,25 +84,20 @@ class Account
   def payment_day
     self.created_at.day
   end
-
+  
   def create_invoice_for_trial
     plan_key = plan_key_from_id(plan_id)
     price = PLANS[plan_key][:price]
     due_date = trial_end_date + 30
-    invoices << Invoice.create!({:active => true, :plan_id => plan_id, :total => price, :date => Date.today.to_time, :due_date => due_date})
+    invoices << Invoice.create!({:active => true, :plan_id => plan_id, :total => price, :date => Date.today, :due_date => due_date})
   end
 
   private
-    def delete_data
-      users.destroy_all
-      invoices.destroy_all
-    end
-  
     def plan_id_number
       return if plan_id > 0 && plan_id <= PLANS.size
       errors.add(:plan_id, "No es un Plan valido")
     end
-
+    
     def set_trial_plan_and_active
       self.plan_id = PLANS[:trial][:id]
       self.active = true
@@ -138,10 +123,12 @@ class Account
     def remove_foreign_chars(string)
       ActiveSupport::Multibyte::Chars.new(string).mb_chars.normalize(:kd).gsub(/[^\x00-\x7F]/,'').to_s
     end
-
+    
     def create_invoice_if_trial
       return if plan_id_was != 1
       self.create_invoice_for_trial
     end
+    
+
 
 end

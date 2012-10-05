@@ -46,7 +46,7 @@
 		</tr>
 		<% if @request.amavis_checked? %>
 			<tr>
-				<td>Resultado AS/AV</td>
+				<td style="width: 20%;">Resultado AS/AV</td>
 				<td class="value">
 					<%= "#{@request.amavis_status} #{@request.amavis_data.amavis_result}" %>
 					<%= "(#{number_with_precision @request.amavis_data.amavis_hits, :precision => 1} puntos)" unless @request.amavis_data.amavis_hits.nil? %>

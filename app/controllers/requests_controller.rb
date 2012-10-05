@@ -1,13 +1,13 @@
 class RequestsController < ApplicationController
 
   def show
-    account_id = current_account.sasl_login
+    account_id = current_account.id
     @request = Request.where(account_id: account_id).find(params[:id])
     @delivery_stats = @request.messages.delivery_stats if @request.messages.size > 10
   end
 
   def index
-    account_id = current_account.sasl_login
+    account_id = current_account.id
     if params[:search].nil?
       @requests = Request.last_for_account(account_id)
     elsif search_blank?(params[:search])

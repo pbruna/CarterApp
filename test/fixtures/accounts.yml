@@ -1,21 +1,23 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  id: 1
   name: MyString
-  sasl_login: MyString
-  sasl_password_view: MyString
   active: false
   plan_id: 1
-  address: 1
+  address: MyString
   country: MyString
+  owner_id: 1
+  address2: MyString
+  city: MyString
+  rut: MyString
 
 two:
-  id: 1
   name: MyString
-  sasl_login: MyString
-  sasl_password_view: MyString
   active: false
   plan_id: 1
-  address: 1
+  address: MyString
   country: MyString
+  owner_id: 1
+  address2: MyString
+  city: MyString
+  rut: MyString

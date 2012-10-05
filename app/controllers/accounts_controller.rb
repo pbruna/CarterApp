@@ -5,12 +5,12 @@ class AccountsController < ApplicationController
   before_filter :display_warning_if_account_inactive
   
   def show
-    @user = User.find(current_user.id, :include => :account)
-    @account = @user.account
+    @user = User.find(current_user.id)
+    @account = current_account
   end
   
   def update_plan
-    @user = User.find(current_user.id, :include => :account)
+    @user = User.find(current_user.id)
     @account = @user.account
     respond_to do |format|
       if @account.update_attributes(params[:account])
@@ -25,7 +25,7 @@ class AccountsController < ApplicationController
   end
   
   def update
-    @user = User.find(current_user.id, :include => :account)
+    @user = User.find(current_user.id)
     @account = @user.account
     respond_to do |format|
       if @account.update_attributes(params[:account])

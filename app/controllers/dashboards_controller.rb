@@ -2,7 +2,7 @@ class DashboardsController < ApplicationController
 
   def show
     @date = params[:date].nil? ? Date.today : Date.parse(params[:date])
-    account_id = current_account.sasl_login
+    account_id = current_account.id
     @metrics = MetricsDaily.find_for_dashboard(@date, account_id)
     @graph_data = MetricsDaily.data_for_monthly_graph(account_id, @date.month) unless @metrics.nil?
     

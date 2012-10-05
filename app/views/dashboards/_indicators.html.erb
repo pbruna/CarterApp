@@ -6,20 +6,20 @@
 			<table class="table table-striped table-condensed">
 				<tbody>
 					<tr>
-						<td>Solicitudes</td>
+						<td>Correos</td>
 						<td class="stat-value"><%= display_metrics(@metrics.request_qty) %></td>
 					</tr>
 					<tr>
-						<td>Mensajes</td>
+						<td>Correos bloqueados (AS/AV)</td>
+						<td class="stat-value"><%= display_metrics(@metrics.blocked_qty) %></td>
+					</tr>
+					<tr>
+						<td>Envíos</td>
 						<td class="stat-value"><%= display_metrics(@metrics.sent_qty) %></td>
 					</tr>
 					<tr>
-						<td>Mensajes rechazados</td>
+						<td>Envíos rechazados</td>
 						<td class="stat-value"><%= display_metrics(@metrics.failed_qty) %></td>
-					</tr>
-					<tr>
-						<td>Mensajes Bloqueados (AS/AV)</td>
-						<td class="stat-value"><%= display_metrics(@metrics.blocked_qty) %></td>
 					</tr>
 					<tr>
 						<td>Tráfico de Red</td>

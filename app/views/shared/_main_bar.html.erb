@@ -2,7 +2,7 @@
 <ul class="nav nav-pills">
   <li><%= menu_link("dashboards", "Dashboard") %></li>
   <li><%= menu_link("requests", "Correos")%></li>
-  <li><%= menu_link("accounts", "Mi Cuenta") %></li>
+  <li><%= menu_link("account", "Mi Cuenta", current_account.id) %></li>
 <% flash.each do |name, msg| %>
   <div class="span6 flash-message  alert alert-<%= name == :notice ? "success" : "error" %>">
     <a class="close" data-dismiss="alert">×</a>
