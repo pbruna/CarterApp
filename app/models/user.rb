@@ -66,6 +66,10 @@ class User
   def owner?
     id == account.owner.id
   end
+  
+  def root?
+    account.root?
+  end
 
   private
   def set_account_owner
