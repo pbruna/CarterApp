@@ -3,11 +3,10 @@ class User
   include Mongoid::Timestamps::Created
   include Mongoid::Timestamps::Updated
   
-  before_create :create_account
-  after_create  :set_account_owner
+  attr_accessor :account_name
   
   belongs_to :account
-  has_many :owned_accounts, :class_name => "Account", :inverse_of => :owner
+  after_create :set_account_owner
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -20,7 +19,9 @@ class User
   field :encrypted_password, :type => String, :default => ""
 
   validates_presence_of :email
+  validates_presence_of :account
   validates_presence_of :encrypted_password
+  validates_uniqueness_of :email
 
   ## Recoverable
   field :reset_password_token,   :type => String
@@ -50,27 +51,26 @@ class User
   ## Token authenticatable
   # field :authentication_token, :type => String
   
-  field :account_name, :type => String
   field :name, :type => String
   field :phone, :type => String
 
   def account_id
     account.id
   end
+  
+  def account_name
+    return account.name unless account.nil?
+    @account_name
+  end
+  
+  def owner?
+    id == account.owner.id
+  end
 
   private
-    def create_account
-      self.account ||= Account.create!(:name => self.account_name)
-    end
-
-    def account_name_uniqueness
-      errors.add(:account_name, "El nombre de la Empresa ya Existe") unless Account.find_by_name(self.account_name).nil?
-    end
-
-    def set_account_owner
-      account = self.account
-      account.owner_id = self.id
-      account.save
-    end
-
+  def set_account_owner
+    account.owner_id = id if account.owner_id.nil?
+    account.save
+  end
+   
 end

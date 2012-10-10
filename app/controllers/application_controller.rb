@@ -29,11 +29,8 @@ class ApplicationController < ActionController::Base
 
   protected
     def layout_by_resource
-      if devise_controller?
-        "public"
-      else
-        "application"
-      end
+      return "application" if current_user
+      "public"
     end
 
 end

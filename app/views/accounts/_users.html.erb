@@ -1,0 +1,50 @@
+<div id="users" class="row-fluid">
+		<div style="float: right; margin-top: 5px">
+			<%= link_to "<i class='icon-plus'></i> Agregar Usuario".html_safe ,nil, :class => "btn btn-small", "data-toggle" => "modal", "data-target" => "#new_user" %>
+		</div>
+		<h2>Usuarios
+		</h2>
+	<% if @account.has_invoices? %>
+		<table class="table table-striped table-bordered table-condensed">
+			<thead>
+				<th>Nombre</th>
+				<th>Email</th>
+				<th style="width: 35%">Acciones</th>
+			</thead>
+			<tbody>
+				<% @account.users.each do |user| %>
+					<tr>
+						<td><%= user.name %></td>
+						<td><%= user.email %></td>
+						<td>
+							<%= button_link({:text => "Editar Usuario", :class => "btn btn-mini btn-primary"})%>
+							<%= button_link({:text => "Eliminar Usuario", :class => "btn btn-mini btn-danger"})%>
+						</td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	<% else %>
+		<p>Aquí podrá revisar y pagar su mensualidad una vez que haya seleccionado un Plan.</p>
+	<% end %>
+</div>
+<div class="modal" id="new_user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Agregar Usuario</h3>
+  </div>
+  <div class="modal-body">
+    <%= simple_form_for(User.new, :html => {:class => "form-horizontal"}) do |f| %>
+	    <%= f.input :name, :required => false, :label => "Nombre" %>
+		<%= f.input :email, :required => true, :label => "Email" %>
+		<%= f.input :password, :required => false, :label => "Contraseña" %>
+		<%= f.input :account_name, :as => :hidden, :input_html => {:value => current_account.name }%>
+		<%= f.input :account, :as => :hidden, :input_html => {:value => current_account}%>
+  </div>
+	<div class="modal-footer">
+	    <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+		<%= f.button :submit, "Guardar", :class => "btn btn-primary" %>
+
+	  </div>
+		<% end %>
+</div>

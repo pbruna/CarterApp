@@ -1,0 +1,21 @@
+<div id="loggin_box">
+	<h2>Registrarse</h2>
+
+	<%= simple_form_for(@account, :html => {:class => "form-horizontal"}) do |f| %>
+	  <%= f.error_notification %>
+
+	  <div class="inputs">
+	 	<%= f.input :name, :label => "Empresa" %>
+		<%= f.fields_for :users do |user_form| %>
+		    <%= user_form.input :email, :autofocus => false %>
+		    <%= user_form.input :password, :required => true, :label => "Contraseña" %>
+		    <%= user_form.input :password_confirmation, :required => true, :label => "Confirmar Contraseña" %>
+		<% end %>
+	  </div>
+
+	  <div class="actions">
+	    <%= f.button :submit, "Registrarse" %>
+	  </div>
+	<% end %>
+
+</div>

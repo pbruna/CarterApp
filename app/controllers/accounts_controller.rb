@@ -1,14 +1,35 @@
 # encoding: utf-8
 
 class AccountsController < ApplicationController
+  skip_before_filter :authenticate_user!, :only => [:new, :create]
   skip_before_filter :block_inactive_accounts!
-  before_filter :display_warning_if_account_inactive
-  
+  before_filter :display_warning_if_account_inactive, :except => [:new, :create]
+
   def show
     @user = User.find(current_user.id)
     @account = current_account
   end
-  
+
+  def new
+    @account = Account.new
+    @account.users.build
+  end
+
+  def create
+    @account = Account.new(params[:account])
+    respond_to do |format|
+      if @account.save
+        sign_in(:user, @account.owner)
+        format.html {redirect_to account_path(@account), :notice => "Cuenta creada correctamente"}
+        format.json {head :no_content}
+      else
+        flash[:error] = "No fue posible crear a cuenta"
+        format.html {render action: "new" }
+        format.json { render json: @account.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def update_plan
     @user = User.find(current_user.id)
     @account = @user.account
@@ -23,7 +44,7 @@ class AccountsController < ApplicationController
       end
     end
   end
-  
+
   def update
     @user = User.find(current_user.id)
     @account = @user.account
@@ -38,13 +59,13 @@ class AccountsController < ApplicationController
       end
     end
   end
-  
+
   private
-  def display_warning_if_account_inactive
-    unless current_account.active?
-      link = '<a href="#select-plan">seleccione un plan</a>'
-      flash[:error] = "Su periodo de prueba terminó, por favor #{link}.".html_safe
+    def display_warning_if_account_inactive
+      unless current_account.active?
+        link = '<a href="#select-plan">seleccione un plan</a>'
+        flash[:error] = "Su periodo de prueba terminó, por favor #{link}.".html_safe
+      end
     end
-  end
-  
+
 end

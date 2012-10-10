@@ -7,7 +7,7 @@
 				<th>Plan y Valor</th>
 				<th>Estado</th>
 				<th>Fecha de Pago</th>
-				<th>Acciones</th>
+				<th style="width: 35%">Acciones</th>
 			</thead>
 			<tbody>
 				<% @account.reverse_invoices.each do |invoice| %>
@@ -17,11 +17,10 @@
 						<td><%= invoice.status_name %></td>
 						<td><%= invoice.due_date %></td>
 						<td>
+							<%= button_link({:text => "Ver Factura", :class => "btn btn-mini btn-primary"})%>
 							<% if invoice.active? %>
 								<%= button_link({:text => "Pagar Factura", :class => "btn btn-mini btn-success"}) %>
 							<% end %>
-							<%= button_link({:text => "Ver Factura", :class => "btn btn-mini btn-info"})%>
-							
 						</td>
 					</tr>
 				<% end %>

@@ -18,3 +18,9 @@
 //= require bootstrap
 //= require bootstrap-datepicker
 //= require_tree .
+
+$(document).ready(function() { 
+	
+	$(".alert-success").delay(2000).fadeOut();
+		
+});

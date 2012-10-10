@@ -9,13 +9,12 @@
 			<small> (quedan <%= @account.trial_days_left %> días)</small>
 		<% end %>
 	</h1>
-	<%= render "account_info" %>
+	<%= render "account_info" if current_user.owner? %>
 	<%= render "current_user" %>
 </div>
 
-<% if @account.trial? %>
+<% if @account.trial? && current_user.owner? %>
 	<%= render :partial => 'select_plan' %>
 <% end %>
 
-
-<%= render "invoices" %>
+<%= render "invoices" if current_user.owner? %>

@@ -19,16 +19,16 @@ class UsersController < ApplicationController
   #   @user = User.new
   # end
   # 
-  # def create
-  #   @user = User.new(params[:user])
-  #   if @user.save
-  #     flash[:notice]="Usuario creado correctamente"
-  #     redirect_to users_path()
-  #   else
-  #     flash[:error]="No fue posible agregar el usuario"
-  #     render :action => "new"
-  #   end
-  # end
+  def create
+    @user = User.new(params[:user])
+    if @user.save
+      flash[:notice]="Usuario creado correctamente"
+      redirect_to account_path(current_account.id)
+    else
+      flash[:error]="No fue posible agregar el usuario  #{ @user.errors.to_hash }" 
+      redirect_to account_path(current_account.id)
+    end
+  end
 
   def update
     params[:user].delete(:password) if params[:user][:password].blank?
