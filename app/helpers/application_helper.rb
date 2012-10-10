@@ -7,8 +7,14 @@ module ApplicationHelper
   def menu_link(controller, title, param = nil)
     link = ""
     link << "#{controller}_path".downcase
-    ccs_class = params[:controller] == controller.pluralize ? "active" : ""
-    "<li class='#{ccs_class}'>#{link_to title, send(link, param)}</li>".html_safe
+    css_class = params[:controller] == controller.pluralize ? "active" : ""
+    css_class = "" if params[:controller] == "accounts" && params[:action].in?(%w[index new edit])
+    "<li class='#{css_class}'>#{link_to title, send(link, param)}</li>".html_safe
+  end
+  
+  def manage_accounts_link
+    css_class = params[:controller] == "accounts" && params[:action].in?(%w[index new edit]) ? "active" : ""
+    "<li class='#{css_class}'>#{link_to 'Administrar Cuentas', accounts_path()}</li>".html_safe
   end
 
   def button_link(opts={})

@@ -3,7 +3,7 @@ Carterapp::Application.routes.draw do
   devise_for :users, :path_prefix => 'sessions'
   resources :users, :except => [:index, :show]
   resources :requests
-  resources :accounts, :except => :index
+  resources :accounts
   match "/accounts", :controller => "accounts", :action => "show"
   match "/dashboards", :controller => "dashboards", :action => "show"
 

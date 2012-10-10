@@ -1,6 +1,10 @@
-<h2>Agregar Cuenta</h2>
-<div>
-    <%= simple_form_for(@account, :html => {:class => "form-horizontal"}) do |f| %>
+<div class="modal" id="new_account" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Agregar Cuenta</h3>
+  </div>
+  <div class="modal-body">
+    <%= simple_form_for(@account, :html => {:class => "form-horizontal"}, :remote => true) do |f| %>
 	  <%= f.error_notification %>
 	  <div class="inputs">
 	 	<%= f.input :name, :label => "Empresa" %>
@@ -11,7 +15,7 @@
 		<% end %>
 	  </div>
 	  <div class="modal-footer">
-	    <%= link_to "Cancelar", accounts_path, :class=>"btn" %>
+	    <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
 		<%= f.button :submit, "Guardar", :class => "btn btn-primary" %>
 	  </div>
 	<% end %>

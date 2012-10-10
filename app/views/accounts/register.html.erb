@@ -1,7 +1,9 @@
-<h2>Agregar Cuenta</h2>
-<div>
-    <%= simple_form_for(@account, :html => {:class => "form-horizontal"}) do |f| %>
+<div id="loggin_box">
+	<h2>Registrarse</h2>
+
+	<%= simple_form_for(@account, :html => {:class => "form-horizontal"}) do |f| %>
 	  <%= f.error_notification %>
+
 	  <div class="inputs">
 	 	<%= f.input :name, :label => "Empresa" %>
 		<%= f.fields_for :users do |user_form| %>
@@ -10,10 +12,10 @@
 		    <%= user_form.input :password_confirmation, :required => true, :label => "Confirmar Contraseña" %>
 		<% end %>
 	  </div>
-	  <div class="modal-footer">
-	    <%= link_to "Cancelar", accounts_path, :class=>"btn" %>
-		<%= f.button :submit, "Guardar", :class => "btn btn-primary" %>
+
+	  <div class="actions">
+	    <%= f.button :submit, "Registrarse" %>
 	  </div>
 	<% end %>
-  </div>
+
 </div>

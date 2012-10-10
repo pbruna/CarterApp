@@ -1,0 +1,14 @@
+<tr>
+	<td class="name" style="width: 30%">
+		<%= account.name %>
+	</td>
+	<td class="stats" style="width: 40%">
+		Correos: <%= number_with_delimiter account.request_qty %>
+	</td>
+	<td class="actions">
+		<%= link_to "<i class='icon-edit'></i> Editar Cuenta".html_safe ,nil, 
+			"data-toggle" => "modal", "data-target" => "#edit_account" %> |
+		<%= link_to "<i class='icon-user'></i> Agregar Usuario".html_safe ,nil, 
+			"data-toggle" => "modal", "data-target" => "#new_user" %>
+	</td>
+</tr>

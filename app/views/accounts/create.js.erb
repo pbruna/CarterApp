@@ -1,0 +1,9 @@
+<% if @account.errors.size > 0 %>
+	$("#new_account.modal").remove();
+	$('#account_modal').append('<%= j render("modal_new_account")%>');
+<% else %>
+	$("#new_account.modal").modal("hide");
+	$("#new_account.modal").remove();
+	$("#accounts").find('tbody').append('<%= j render(:partial => "account", :locals => {:account => @account})%>');
+	$("#accounts").find('tbody').find('tr').last().effect("highlight", null, 1500);
+<% end %>

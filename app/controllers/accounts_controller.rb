@@ -5,6 +5,11 @@ class AccountsController < ApplicationController
   skip_before_filter :block_inactive_accounts!
   before_filter :display_warning_if_account_inactive, :except => [:new, :create]
 
+  def index
+    redirect_to account_path(current_account) unless current_user.root?
+    @accounts = Account.all.order_by(:name => :desc).to_a
+  end
+
   def show
     @user = User.find(current_user.id)
     @account = current_account
@@ -13,19 +18,26 @@ class AccountsController < ApplicationController
   def new
     @account = Account.new
     @account.users.build
+    
+    respond_to do |format|
+      format.html
+      format.js 
+    end
+    
   end
 
   def create
     @account = Account.new(params[:account])
     respond_to do |format|
       if @account.save
-        sign_in(:user, @account.owner)
         format.html {redirect_to account_path(@account), :notice => "Cuenta creada correctamente"}
         format.json {head :no_content}
+        format.js
       else
         flash[:error] = "No fue posible crear a cuenta"
         format.html {render action: "new" }
         format.json { render json: @account.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end

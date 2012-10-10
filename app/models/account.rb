@@ -24,6 +24,7 @@ class Account
   #validate :presence_of_owner, :on => :create
 
   has_many :users, :inverse_of => :account, :dependent => :destroy
+  has_many :requests
   accepts_nested_attributes_for :users
   #belongs_to :owner, :class_name => "User"
   has_many :invoices, :dependent => :destroy
@@ -49,6 +50,10 @@ class Account
   
   def owner_nil?
     owner_id.nil?
+  end
+  
+  def request_qty
+    requests.count
   end
 
   def reverse_invoices
