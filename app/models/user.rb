@@ -7,6 +7,7 @@ class User
   
   belongs_to :account
   after_create :set_account_owner
+  before_destroy :account_owner?
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -75,6 +76,12 @@ class User
   def set_account_owner
     account.owner_id = id if account.owner_id.nil?
     account.save
+  end
+  
+  def account_owner?
+    return true unless owner?
+    errors.add(:account, "You cant delete an account owner")
+    false
   end
    
 end
