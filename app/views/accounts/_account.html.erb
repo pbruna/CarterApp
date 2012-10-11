@@ -6,9 +6,8 @@
 		Correos: <%= number_with_delimiter account.request_qty %>
 	</td>
 	<td class="actions">
-		<%= link_to "<i class='icon-edit'></i> Editar Cuenta".html_safe ,nil, 
-			"data-toggle" => "modal", "data-target" => "#edit_account" %> |
-		<%= link_to "<i class='icon-user'></i> Agregar Usuario".html_safe ,nil, 
-			"data-toggle" => "modal", "data-target" => "#new_user" %>
+		<%= link_to "<i class='icon-edit'></i> Editar Cuenta".html_safe ,edit_account_path(account) %> |
+		<%= link_to "<i class='icon-user'></i> Agregar Usuario".html_safe ,new_user_path(:account_id => account.id),
+		 "data-account_id" => account.id, :remote => true %>
 	</td>
 </tr>

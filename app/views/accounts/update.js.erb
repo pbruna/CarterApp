@@ -1,0 +1,6 @@
+<% if @account.errors.size > 0 %>
+	$("#account_name").css("border", "1px solid red")
+	alert("El nombre ya esta ocupado")
+<% else %>
+	$("#account_name").effect("highlight", null, 1500);
+<% end %>

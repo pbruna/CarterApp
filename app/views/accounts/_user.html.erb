@@ -1,0 +1,13 @@
+<tr id="<%= user.id %>">
+	<td class="name" style="width: 30%">
+		<%= user.email %>
+	</td>
+	<td class="stats" style="width: 40%">
+		<%= user.password %>
+	</td>
+	<td class="actions">
+		<%= link_to "<i class='icon-edit'></i> Editar".html_safe, edit_user_path(user), :remote => true %> |
+		<%= link_to("<i class='icon-user'></i> Eliminar Usuario".html_safe, user_path(user), :method => :delete,
+			:confirm => "Seguro?", :remote => true) unless user.owner? %>
+	</td>
+</tr>

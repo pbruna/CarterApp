@@ -1,0 +1,21 @@
+<div class="modal" id="new_user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Administrar usuario de <%= @account.name %></h3>
+  </div>
+  <div class="modal-body">
+    <%= simple_form_for(@user, :html => {:class => "form-horizontal"}, :remote => true) do |f| %>
+	  <%= f.error_notification %>
+	  <div class="inputs">
+	    <%= f.input :email, :autofocus => true %>
+		<%= f.input :name, :label => "Nombre" %>
+	    <%= f.input :password, :required => true, :label => "Contraseña" %>
+		<%= f.input :account_id, :as => :hidden, :html => {:value => @account.id}%>
+	  </div>
+	  <div class="modal-footer">
+	    <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+		<%= f.button :submit, "Guardar", :class => "btn btn-primary" %>
+	  </div>
+	<% end %>
+  </div>
+</div>

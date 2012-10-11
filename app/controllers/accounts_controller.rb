@@ -22,8 +22,7 @@ class AccountsController < ApplicationController
     respond_to do |format|
       format.html
       format.js 
-    end
-    
+    end    
   end
 
   def create
@@ -56,6 +55,10 @@ class AccountsController < ApplicationController
     end
   end
 
+  def edit
+    @account = Account.find(params[:id])
+  end
+
   def update
     @user = User.find(current_user.id)
     @account = @user.account
@@ -63,10 +66,12 @@ class AccountsController < ApplicationController
       if @account.update_attributes(params[:account])
         format.html {redirect_to @account, :notice => "Cambios guardados correctamente"}
         format.json {head :no_content}
+        format.js 
       else
         flash[:error] = "No fue posible guardar los cambios"
         format.html {render action: "show"}
         format.json { render json: @account.errors, status: :unprocessable_entity }
+        format.js 
       end
     end
   end

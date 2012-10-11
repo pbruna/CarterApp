@@ -1,0 +1,11 @@
+<% if @user.errors.size > 0 %>
+	$("#new_user").modal("hide");
+	$("#new_user.modal").remove();
+	$('#user_modal').append('<%= j render("modal_new_user")%>');
+	$("#new_user").modal("show");
+<% else %>
+	$("#new_user").modal("hide");
+	$("#new_user.modal").remove();
+	$("#<%= @user.id %>").replaceWith('<%= j render(:partial => "accounts/user", :locals => {:user => @user}) %>');
+	$("#<%= @user.id %>").effect("highlight", null, 1500);
+<% end %>
