@@ -55,3 +55,4 @@ gem 'delayed_job_mongoid'
 gem 'mongoid'
 gem 'bson_ext'
 gem 'bootstrap-datepicker-rails'
+gem "ipaddress"

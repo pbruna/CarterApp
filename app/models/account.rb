@@ -2,7 +2,7 @@ class Account
   include Mongoid::Document
   include Mongoid::Timestamps::Created
   include Mongoid::Timestamps::Updated
-  
+
   SASL_PASSWORD_LENGTH=10
 
   field :owner_id, type: Moped::BSON::ObjectId
@@ -15,12 +15,15 @@ class Account
   field :city, type: String
   field :rut, type: String
   field :root, type: Boolean
+  field :ipaddress, type: String
 
   #attr_accessible :active, :address, :country, :id, :name, :plan_id, :sasl_login, :city, :rut
-  
+
   validates_presence_of :name
   validates_uniqueness_of :name, :case_sensitive => false
+  validates_uniqueness_of :ipaddress
   validate :plan_id_number, :on => :update
+  validate :ip_address_must_be_valid
   #validate :presence_of_owner, :on => :create
 
   has_many :users, :dependent => :destroy
@@ -28,7 +31,7 @@ class Account
   accepts_nested_attributes_for :users, :allow_destroy => true
   #belongs_to :owner, :class_name => "User"
   has_many :invoices, :dependent => :destroy
-  
+
   before_create :set_trial_plan_and_active
   #after_save :set_owner, :if => :owner_nil?
   before_update :create_invoice_if_trial, :if => Proc.new {|account| account.plan_id_changed?}
@@ -40,7 +43,7 @@ class Account
     :professional => {:id => 3, :name => "Pyme", :price => 75000},
     :enterprise => {:id => 4, :name => "Empresarial", :price => 100000}
   }
-  
+
   def self.any_root_account?
     where(:root => true).to_a.size > 0
   end
@@ -48,11 +51,11 @@ class Account
   def owner
     User.find(owner_id)
   end
-  
+
   def owner_nil?
     owner_id.nil?
   end
-  
+
   def request_qty
     requests.count
   end
@@ -60,7 +63,7 @@ class Account
   def reverse_invoices
     invoices.reverse
   end
-  
+
   def plans_for_select
     if trial?
       PLANS.each_key.to_a.map {|k| {:value => PLANS[k][:id], :label => PLANS[k][:name].titleize}}
@@ -127,16 +130,25 @@ class Account
     def set_owner
       update_attribute(:owner_id, self.users.first.id)
     end
-    
+
+    def ip_address_must_be_valid
+      return true if ipaddress.blank?
+      begin
+        IPAddress.parse ipaddress
+      rescue ArgumentError => e
+        errors.add(:ipaddress, e.message)
+      end
+    end
+
     def presence_of_owner
       errors.add(:owner_id, "Must have an owner") if owner_id.nil?
     end
-  
+
     def delete_data
       users.destroy_all
       invoices.destroy_all
     end
-  
+
     def plan_id_number
       return if plan_id > 0 && plan_id <= PLANS.size
       errors.add(:plan_id, "No es un Plan valido")

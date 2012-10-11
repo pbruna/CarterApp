@@ -1,8 +1,6 @@
-<div class="input-append" id="edit_account">
-<%= form_for @account, :remote => true do |f| %>
-  <%= f.text_field :name, :class => "edit_account_name" %><%= f.submit  "Cambiar nombre", :class => "btn btn-large", :id => "change_name_button", :style => "display: none" %>
-<% end %>
-</div>
+<h1>Masev</h1>
+<%= render :partial => 'edit_account' %>
+
 
 
 <div style="float: right; margin-top: -5px">

@@ -64,6 +64,7 @@ GEM
     high_voltage (1.1.1)
     hike (1.2.1)
     i18n (0.6.0)
+    ipaddress (0.8.0)
     journey (1.0.4)
     jquery-rails (2.0.2)
       railties (>= 3.2.0, < 5.0)
@@ -156,6 +157,7 @@ DEPENDENCIES
   delayed_job_mongoid
   devise
   high_voltage
+  ipaddress
   jquery-rails
   jquery-ui-rails
   letter_opener

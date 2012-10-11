@@ -61,7 +61,11 @@ class AccountsController < ApplicationController
 
   def update
     @user = User.find(current_user.id)
-    @account = @user.account
+    if @user.root?
+      @account = Account.find(params[:id])
+    else
+      @account = @user.account
+    end
     respond_to do |format|
       if @account.update_attributes(params[:account])
         format.html {redirect_to @account, :notice => "Cambios guardados correctamente"}
