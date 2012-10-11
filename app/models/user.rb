@@ -7,6 +7,7 @@ class User
   
   belongs_to :account
   after_create :set_account_owner
+  before_create :set_password_token
   before_destroy :account_owner?
   
   # Include default devise modules. Others available are:
@@ -76,6 +77,11 @@ class User
   def set_account_owner
     account.owner_id = id if account.owner_id.nil?
     account.save
+  end
+  
+  def set_password_token
+    self.reset_password_token = User.reset_password_token
+    self.reset_password_sent_at = Time.now
   end
   
   def account_owner?

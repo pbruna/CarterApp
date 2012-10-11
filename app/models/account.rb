@@ -23,9 +23,9 @@ class Account
   validate :plan_id_number, :on => :update
   #validate :presence_of_owner, :on => :create
 
-  has_many :users, :inverse_of => :account, :dependent => :destroy
-  has_many :requests
-  accepts_nested_attributes_for :users
+  has_many :users, :dependent => :destroy
+  has_many :requests,  :dependent => :destroy
+  accepts_nested_attributes_for :users, :allow_destroy => true
   #belongs_to :owner, :class_name => "User"
   has_many :invoices, :dependent => :destroy
   

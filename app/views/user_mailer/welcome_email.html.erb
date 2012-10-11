@@ -1,1 +1,37 @@
-Bienvenido a Carter HTML
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+<body style="margin: 0px; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; background-color: #f7f7f9;">
+<style type="text/css">
+  #header {
+	background-color: #2C2C2C;
+	width: 100%;
+  }
+
+  body {
+    margin: 0px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	background-color: #f7f7f9;
+  }
+
+ #main {
+	padding-left: 20px;
+ } 
+</style>
+<div id="header" style="background-color: #2C2C2C; width: 100%;">
+</div>
+
+<div id="main" style="padding-left: 20px;">
+
+  <p>Hola <%= @user.name %> y bienvenido a CarterApp.</p>
+  <p>
+	CarterApp da la posibilidad de ver en tiempo real el estado de cada correo electrónico: envíado o recibido.
+	<br/>
+	Puedes ingresar en el siguiente enlace:
+   </p>
+    <p><%= link_to edit_password_url(@user, :reset_password_token => @user.reset_password_token), edit_password_url(@user, :reset_password_token => @user.reset_password_token) %></p>
+</div>
+</body>
+</html>

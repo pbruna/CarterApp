@@ -1,5 +1,9 @@
 ## Configuración
 
+### Envío de Correos
+El sistema envía varios correos con notificaciones. Para que los correos sean despachados correctamente se deben configurar las opciones del archivo ./config/initializers/smtp_config.rb.
+En el software viene el archivo ./config/initializers/smtp_config.rb.sample que puede ser usado como ejemplo
+
 ### Creación de cuenta root
 Cuando hablamos de cuenta nos referimos a la organización a la cual pertenecen los usuarios.
 La cuenta root es una cuenta especial que sólo debe ser utilizada por la empresa que administra la plataforma CarterApp y da el servicio a otras empresas. Esta cuenta especial, y sus usuarios, cuentan con los siguiente privilegios:
