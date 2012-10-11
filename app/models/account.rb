@@ -31,7 +31,8 @@ class Account
   
   before_create :set_trial_plan_and_active
   #after_save :set_owner, :if => :owner_nil?
-  before_update  :create_invoice_if_trial, :if => Proc.new {|account| account.plan_id_changed?}
+  before_update :create_invoice_if_trial, :if => Proc.new {|account| account.plan_id_changed?}
+  before_destroy { |account| return false if account.root? }
 
   PLANS = {
     :trial => {:id => 1, :days => 30, :name => "Trial", :price => 0},
