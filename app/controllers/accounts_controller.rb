@@ -34,8 +34,7 @@ class AccountsController < ApplicationController
         format.json {head :no_content}
         format.js
       else
-        flash[:error] = "No fue posible crear a cuenta"
-        format.html {render action: "new" }
+        format.html {render action: "new", :error => "No fue posible crear a cuenta" }
         format.json { render json: @account.errors, status: :unprocessable_entity }
         format.js
       end
