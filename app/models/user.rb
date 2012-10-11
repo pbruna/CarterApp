@@ -66,7 +66,7 @@ class User
   end
   
   def owner?
-    id == account.owner.id
+    id == account.owner_id
   end
   
   def root?

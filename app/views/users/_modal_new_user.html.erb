@@ -10,7 +10,7 @@
 	    <%= f.input :email, :autofocus => true %>
 		<%= f.input :name, :label => "Nombre" %>
 	    <%= f.input :password, :required => true, :label => "Contraseña" %>
-		<%= f.input :account_id, :as => :hidden, :html => {:value => @account.id}%>
+		<%= f.input :account_id, :as => :hidden, :input_html => {:value => @account.id}%>
 	  </div>
 	  <div class="modal-footer">
 	    <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>

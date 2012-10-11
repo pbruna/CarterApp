@@ -72,6 +72,7 @@ class AccountsController < ApplicationController
         format.json {head :no_content}
         format.js 
       else
+        logger.debug(@account.errors.messages)
         flash[:error] = "No fue posible guardar los cambios"
         format.html {render action: "show"}
         format.json { render json: @account.errors, status: :unprocessable_entity }

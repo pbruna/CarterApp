@@ -9,6 +9,7 @@
 	  <div class="inputs">
 	 	<%= f.input :name, :label => "Empresa", :autofocus => true %>
 		<%= f.input :ipaddress, :label => "Dirección IP" %>
+		<%= f.input :plan_id, :as => :hidden, :input_html => { :value => Account::PLANS[:free][:id] } %>
 		<h4>Usuario</h4>
 		<%= f.fields_for :users do |user_form| %>
 		    <%= user_form.input :email, :autofocus => false %>

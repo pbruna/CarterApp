@@ -34,10 +34,11 @@ class Account
 
   before_create :set_trial_plan_and_active
   #after_save :set_owner, :if => :owner_nil?
-  before_update :create_invoice_if_trial, :if => Proc.new {|account| account.plan_id_changed?}
+  before_update :create_invoice_if_trial, :if => Proc.new {|account| account.plan_id_changed? }
   before_destroy { |account| return false if account.root? }
 
   PLANS = {
+    :free => {:id => 0, :name => "Free", :price => 0},
     :trial => {:id => 1, :days => 30, :name => "Trial", :price => 0},
     :lite => {:id => 2, :name => "Lite", :price => 45000},
     :professional => {:id => 3, :name => "Pyme", :price => 75000},
@@ -150,12 +151,12 @@ class Account
     end
 
     def plan_id_number
-      return if plan_id > 0 && plan_id <= PLANS.size
+      return if plan_id >= 0 && plan_id <= PLANS.size
       errors.add(:plan_id, "No es un Plan valido")
     end
 
     def set_trial_plan_and_active
-      self.plan_id = PLANS[:trial][:id]
+      self.plan_id ||= PLANS[:trial][:id]
       self.active = true
     end
 
