@@ -18,11 +18,10 @@ class AccountsController < ApplicationController
   def new
     @account = Account.new
     @account.users.build
-    
     respond_to do |format|
-      format.html
-      format.js 
-    end    
+      format.html {redirect_to account_path(current_account) unless current_user.root?}
+      format.js
+    end
   end
 
   def create
@@ -42,7 +41,11 @@ class AccountsController < ApplicationController
 
   def update_plan
     @user = User.find(current_user.id)
-    @account = @user.account
+    if @user.root?
+      @account = Account.find(params[:id])
+    else
+      @account = @user.account
+    end
     respond_to do |format|
       if @account.update_attributes(params[:account])
         format.html {redirect_to @account, :notice => "Plan cambiado correctamente"}
@@ -56,7 +59,12 @@ class AccountsController < ApplicationController
   end
 
   def edit
-    @account = Account.find(params[:id])
+    @user = User.find(current_user.id)
+    if @user.root?
+      @account = Account.find(params[:id])
+    else
+      @account = @user.account
+    end
   end
 
   def update
@@ -70,13 +78,12 @@ class AccountsController < ApplicationController
       if @account.update_attributes(params[:account])
         format.html {redirect_to @account, :notice => "Cambios guardados correctamente"}
         format.json {head :no_content}
-        format.js 
+        format.js
       else
-        logger.debug(@account.errors.messages)
         flash[:error] = "No fue posible guardar los cambios"
         format.html {render action: "show"}
         format.json { render json: @account.errors, status: :unprocessable_entity }
-        format.js 
+        format.js
       end
     end
   end

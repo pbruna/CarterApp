@@ -1,8 +1,11 @@
-<div class="input-append well"  id="edit_account">
-	<%= simple_form_for @account, :html => {:class => "form-vertical edit_account", :method => :put} ,:remote => true do |f| %>
-		<%= f.error_notification %>
-		<%= f.input :name, :label => "Nombre", :required => false %>
-		<%= f.input :ipaddress, :label => "Dirección IP"%>
-		<%= f.button :submit,  "Guardar", :class => "btn"%>
-	<% end %>
+<div id="edit_account">
+	<h1><%= @account.name %></h1>
+	<div class="input-append well" >
+		<%= simple_form_for @account, :html => {:class => "form-vertical edit_account", :method => :put} ,:remote => true do |f| %>
+			<%= f.error_notification %>
+			<%= f.input :name, :label => "Nombre", :required => false %>
+			<%= f.input :ipaddress, :label => "Dirección IP"%>
+			<%= f.button :submit,  "Guardar", :class => "btn"%>
+		<% end %>
+	</div>
 </div>
