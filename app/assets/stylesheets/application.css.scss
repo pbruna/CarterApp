@@ -29,3 +29,18 @@
 		float: right;
 	}
 }
+
+#select-managed-account {
+	float: right;
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+	form {
+		margin-bottom: 0px;
+		
+		select {
+			padding-bottom: 0px;
+			margin-bottom: 0px;
+		}
+	}
+	
+}

@@ -3,6 +3,7 @@
 		<%= show_date(@date) %>
 		<%= form_tag "", :method => :get, :class => "change-date"  do %>
 			<%= text_field_tag :date, nil, :placeholder => "cambiar fecha", :class => "date-picker" %>
+			<%= hidden_field_tag :managed_account, params[:managed_account]%>
 			<%= button_tag "Aceptar", :class => "btn btn-mini", :style =>"display:none;", :id => "submit-date" %>
 		<% end %>
 	</h2>

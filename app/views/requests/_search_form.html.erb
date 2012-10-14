@@ -3,6 +3,7 @@
 	<%= form_tag "/requests/", :method => :get do %>
 		<div class="input-prepend input-append">
 			<%= request_search_field("De:", "remitente@example.com", "email", "src_email_address", true) -%><%= request_search_field("Para:", "destinatario@example.com", "email", "dst_email_address") -%><%= request_search_field("Desde:", "09/10/2012", "date date-picker", "start_date") %><%= request_search_field("Hasta:", "09/11/2012", "date date-picker", "end_date") %>
+			<%= hidden_field_tag :managed_account, params[:managed_account]%>
 			<%= button_tag "Buscar correos", :class => "btn btn-success"%>
 			<%= %>
 		</div>

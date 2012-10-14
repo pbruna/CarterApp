@@ -22,5 +22,9 @@
 $(document).ready(function() { 
 	
 	$(".alert-success").delay(2000).fadeOut();
+	
+	$("#managed_account").change(function(){
+		$(this).parent('form').submit();
+	});
 		
 });

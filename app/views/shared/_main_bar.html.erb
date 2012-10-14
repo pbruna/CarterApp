@@ -1,16 +1,25 @@
-<div id="main-bar">
-<ul class="nav nav-pills">
-  <li><%= menu_link("dashboards", "Dashboard") %></li>
-  <li><%= menu_link("requests", "Correos")%></li>
-  <li><%= menu_link("account", "Mi Cuenta", current_account.id) %></li>
-  <% if current_user.root? %>
-	<%= manage_accounts_link() %>
-  <% end %>
-<% flash.each do |name, msg| %>
-  <div class="span6 flash-message  alert alert-<%= name == :notice ? "success" : "error" %>">
-    <a class="close" data-dismiss="alert">×</a>
-    <%= msg %>
-  </div>
+<% if current_user.root? && request[:controller] != "accounts" %>
+	<div id="select-managed-account">
+		<%= form_tag '', :method => :get do %>
+			<%= select_tag :managed_account, 
+			options_from_collection_for_select(Account.all, 'id', 'name',  params[:managed_account]),
+			:prompt => "Seleccione cuenta" %>
+		<% end %>
+	</div>
 <% end %>
-</ul>
+<div id="main-bar">
+	<ul class="nav nav-pills">
+	  <li><%= menu_link("dashboards", "Dashboard", {:managed_account => params[:managed_account]}) %></li>
+	  <li><%= menu_link("requests", "Correos", {:managed_account => params[:managed_account]})%></li>
+	  <li><%= menu_link("account", "Mi Cuenta", current_account.id) unless current_user.root? %></li>
+	  <% if current_user.root? %>
+		<%= manage_accounts_link() %>
+	  <% end %>
+	<% flash.each do |name, msg| %>
+	  <div class="span6 flash-message  alert alert-<%= name == :notice ? "success" : "error" %>">
+	    <a class="close" data-dismiss="alert">×</a>
+	    <%= msg %>
+	  </div>
+	<% end %>
+	</ul>
 </div>

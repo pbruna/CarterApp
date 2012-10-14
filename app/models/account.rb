@@ -66,12 +66,9 @@ class Account
   end
 
   def plans_for_select
-    if trial?
-      PLANS.each_key.to_a.map {|k| {:value => PLANS[k][:id], :label => PLANS[k][:name].titleize}}
-    else
-      # We remove the trial plan if the account is not trial
-      PLANS.each_key.to_a.map {|k| {:value => PLANS[k][:id], :label => PLANS[k][:name].titleize}}[1..3]
-    end
+    ary = PLANS.each_key.to_a.map {|k| {:value => PLANS[k][:id], :label => PLANS[k][:name].titleize}}
+    ary.delete_at(1) unless trial?
+    ary
   end
 
   def plan_key_from_id(id)
