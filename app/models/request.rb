@@ -9,7 +9,6 @@ class Request
   field :request_id, :type => String
   field :queue_id, :type => String
   field :src_hostname
-  field :account_id
   field :running, :type => Integer
   
   index "dst_email_address" => 1

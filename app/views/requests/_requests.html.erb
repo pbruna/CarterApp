@@ -12,7 +12,7 @@
 			<% @requests.each do |request| %>
 				<tr class="request-row">
 					<td class="date" style="padding-bottom:10px; width: 10%; padding-right: 15px">
-						<%= link_to request.queue_id, request_path(request._id) %><br/>
+						<%= link_to request.queue_id, request_path(request._id, :managed_account => params[:managed_account]) %><br/>
 						<%= l request.created_at.to_date, :format => :month_day %> 
 						<%= l request.created_at, :format => :time_only%>
 						<br/>
