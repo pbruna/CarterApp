@@ -16,7 +16,7 @@ TIMEOUT=${TIMEOUT-60}
 APP_ROOT=/home/carter/App/CarterApp
 APP_USER="carter"
 PID=$APP_ROOT/tmp/unicorn.pid
-SET_RVM="rvm use ruby-1.9.3-p0@rails-3.2"
+SET_RVM="rvm use ruby-1.9.3@rails3"
 CMD="$APP_ROOT/bin/unicorn -D -c $APP_ROOT/config/unicorn.rb -E production"
 action="$1"
 set -u
