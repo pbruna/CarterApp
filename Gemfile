@@ -56,3 +56,4 @@ gem 'mongoid'
 gem 'bson_ext'
 gem 'bootstrap-datepicker-rails'
 gem "ipaddress"
+gem "daemons"
