@@ -8,6 +8,7 @@
   #header {
 	background-color: #2C2C2C;
 	width: 100%;
+	height: 60px;
   }
 
   body {
@@ -18,17 +19,39 @@
 
  #main {
 	padding-left: 20px;
- } 
+ }
+ #brand {
+	float: left;
+	display: block;
+	padding: 12px 20px 12px 35px;
+	margin-left: -20px;
+	font-size: 20px;
+	font-weight: 200;
+	line-height: 1;
+	color: #999;
+	font-weight: bold;
+	font-size: 32px;
+  }
 </style>
 <div id="header" style="background-color: #2C2C2C; width: 100%;">
+	<div id="brand">
+		CarterApp
+	</div>
 </div>
 
 <div id="main" style="padding-left: 20px;">
 
-  <p>Hola <%= @user.name %> y bienvenido a CarterApp.</p>
+  <p>Hola <%= "#{@user.name} " %>y bienvenido a CarterApp.</p>
   <p>
-	CarterApp da la posibilidad de ver en tiempo real el estado de cada correo electrónico: envíado o recibido.
-	<br/>
+	CarterApp es un servicio desarrollado en <a href="http://www.itlinux.cl">IT Linux</a> que permite hacer un seguimiento
+	a todos los correos que pasan por tu servidor de correos y responder preguntas como:
+   </p>
+	<ul>
+		<li>¿Llegó el correo al destino?</li>
+		<li>¿Qué paso con el correo que enviaron desde _______ ?</li>
+		<li>¿Qué usuarios son los que envían y reciben más correos?</li>
+	</ul>
+	<p>
 	Puedes ingresar en el siguiente enlace:
    </p>
     <p><%= link_to edit_password_url(@user, :reset_password_token => @user.reset_password_token), edit_password_url(@user, :reset_password_token => @user.reset_password_token) %></p>

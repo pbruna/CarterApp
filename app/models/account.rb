@@ -16,6 +16,8 @@ class Account
   field :rut, type: String
   field :root, type: Boolean
   field :ipaddress, type: String
+  
+  index "ipaddress" => 1
 
   #attr_accessible :active, :address, :country, :id, :name, :plan_id, :sasl_login, :city, :rut
 

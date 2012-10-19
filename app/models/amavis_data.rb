@@ -10,4 +10,9 @@ class AmavisData
     read_attribute(:quarantine_file) || nil
   end
   
+  def amavis_result
+    read_attribute(:amavis_result) || "Procesado"
+  end
+
+  
 end
