@@ -13,7 +13,7 @@ set -e
 
 # Feel free to change any of the following variables for your app:
 TIMEOUT=${TIMEOUT-60}
-APP_ROOT=/home/carter/carterapp
+APP_ROOT=/home/carter/App/CarterApp
 APP_USER="carter"
 PID=$APP_ROOT/tmp/unicorn.pid
 SET_RVM="rvm use ruby-1.9.3-p0@rails-3.2"
