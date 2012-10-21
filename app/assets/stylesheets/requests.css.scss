@@ -78,10 +78,7 @@ input[type="text"].date {
 	
 	#boxes {
 		margin-bottom: 20px;
-		
-		td {
-			padding: 5px;
-		}
+		margin-top: 5px;
 	}
 	
 	.box {
@@ -96,6 +93,9 @@ input[type="text"].date {
 		padding-top: 25px;
 		border-radius: 4px;
 		width: 140px;
+		margin-right: 10px;
+		float: left;
+		margin-bottom: 10px;
 	}
 	
 	#request-delay {

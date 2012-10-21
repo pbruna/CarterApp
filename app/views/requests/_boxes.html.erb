@@ -1,42 +1,30 @@
-<div id="boxes">
-	<table>
-		<tr>
-			<td>
-				<div id="request-status" class="box request-<%= request_css_class(@request) %>">
-					<%= @request.status_name %>
-				</div>
-			</td>
-			<td><div id="request-delay" class="box">
-				<%= seconds_to_human_time (@request.closed_at - @request.created_at ) unless @request.created_at.nil? %>
-				</div>
-			</td>
-			<td>
-				<div id="request-size" class="box">
-					<%= request_human_size @request %>
-				</div>
-			</td>
-		</tr>
-		<% if @request.dst_email_address.size > 10 %>
-			<tr>
-				<td>
-					<div id="request-sent" class="box">
-						<%= @delivery_stats[:sent] %>
-						<h3>enviados</h3>
-					</div>
-				</td>
-				<td>
-					<div id="request-deferred" class="box">
-						<%= @delivery_stats[:deferred] %>
-						<h3>enconlados</h3>
-					</div>
-				</td>
-				<td>
-					<div id="request-bounced" class="box">
-						<%= @delivery_stats[:bounced] %>
-						<h3>rebotes</h3>
-					</div>
-				</td>
-			</tr>
-		<%end %>
-	</table>
+<div id="boxes" class="span6">
+
+	<div id="request-status" class="box request-<%= request_css_class(@request) %>">
+		<%= @request.status_name %>
 	</div>
+	<div id="request-delay" class="box">
+		<%= seconds_to_human_time (@request.closed_at - @request.created_at ) unless @request.created_at.nil? %>
+	</div>
+	<div id="request-size" class="box">
+		<%= request_human_size @request %>
+	</div>
+
+	<% if @request.dst_email_address.size > 10 %>
+
+		<div id="request-sent" class="box">
+			<%= @delivery_stats[:sent] %>
+			<h3>enviados</h3>
+		</div>
+		<div id="request-deferred" class="box">
+			<%= @delivery_stats[:deferred] %>
+			<h3>enconlados</h3>
+		</div>
+		<div id="request-bounced" class="box">
+			<%= @delivery_stats[:bounced] %>
+			<h3>rebotes</h3>
+		</div>
+
+	<%end %>
+
+</div>
