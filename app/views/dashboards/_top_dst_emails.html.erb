@@ -9,7 +9,7 @@
 					<tr>
 						<td><%= dst_email["address"]%></td>
 						<td class="stat-value"><%= display_metrics dst_email["count"]%></td>
-						<td class="stat-value"><%= show_percent dst_email["count"], @metrics.dst_emails_count%></td>
+						<td class="stat-value"><%= show_percent dst_email["count"], @metrics.total_dst_emails_count%></td>
 					</tr>
 					<% end %>
 				</tbody>

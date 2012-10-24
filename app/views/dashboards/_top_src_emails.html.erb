@@ -8,7 +8,7 @@
 						<tr>
 							<td><%= src_email["address"]%></td>
 							<td class="stat-value"><%= display_metrics src_email["count"]%></td>
-							<td class="stat-value"><%= show_percent src_email["count"], @metrics.src_emails_count%></td>
+							<td class="stat-value"><%= show_percent src_email["count"], @metrics.total_src_emails_count%></td>
 						</tr>
 						<% end %>
 					</tbody>

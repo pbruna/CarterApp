@@ -1,7 +1,6 @@
 class DashboardsController < ApplicationController
   before_filter :set_account
 
-
   def show
     account_id = @account.id
     @date = params[:date].nil? ? Date.today : Date.parse(params[:date])
@@ -12,7 +11,7 @@ class DashboardsController < ApplicationController
     # we redirect to the last date with data
     if params[:date].nil? && @metrics.nil?
       last_date = MetricsDaily.last_date_with_data(account_id)
-      redirect_to dashboards_path(:date => last_date) unless last_date.nil?
+      redirect_to dashboards_path(:date => last_date, :managed_account => params[:managed_account]) unless last_date.nil?
     end
   end
 
