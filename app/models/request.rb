@@ -30,8 +30,9 @@ class Request
     end
   end
   
+  # The result are returned in descended order by _id (timestamp)
   def self.search(account_id, params = {}, limit = DEFAULT_PAGE_LIMIT, page = 0)
-    search_criteria_builder(account_id, params, limit, page).to_a
+    search_criteria_builder(account_id, params, limit, page).desc(:_id).to_a
   end
   
   def self.search_resume(account_id, params = {}, limit = 0, page = 0)
