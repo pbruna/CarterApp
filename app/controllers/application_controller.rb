@@ -5,7 +5,9 @@ class ApplicationController < ActionController::Base
   layout :layout_by_resource
   before_filter :authenticate_user!
   before_filter :block_inactive_accounts!
-
+  
+  include LocaleSetter::Rails
+  
   def after_sign_in_path_for(resource)
      if resource.sign_in_count == 1
           account_path(resource.account)

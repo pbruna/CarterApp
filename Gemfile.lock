@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/pbruna/locale_setter.git
+  revision: 46fd0dba4dd9c10ac353768ade2f1fe7519baeee
+  specs:
+    locale_setter (0.1.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -169,6 +175,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   letter_opener
+  locale_setter!
   mongoid
   rails (= 3.2.8)
   sass-rails (~> 3.2.3)

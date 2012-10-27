@@ -57,3 +57,4 @@ gem 'bson_ext'
 gem 'bootstrap-datepicker-rails'
 gem "ipaddress"
 gem "daemons"
+gem 'locale_setter', :git => "git://github.com/pbruna/locale_setter.git"
