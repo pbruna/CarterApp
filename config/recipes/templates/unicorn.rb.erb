@@ -1,0 +1,8 @@
+listen <%= unicorn_port %>, :tcp_nopush => true
+worker_processes <%= unicorn_workers %>
+working_directory "<%= current_path %>"
+pid "<%= unicorn_pid %>"
+stderr_path "<%= unicorn_error_log %>"
+stderr_path "<%= unicorn_log %>"
+timeout 30
+preload_app true
