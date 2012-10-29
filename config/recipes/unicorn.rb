@@ -11,10 +11,10 @@ namespace :unicorn do
   task :setup, roles: :app do
     run "mkdir -p #{shared_path}/config"
     template "unicorn.rb.erb", unicorn_config
-    template "#{application}_init.erb", "/tmp/#{application}unicorn_init"
+    template "#{application}_init.erb", "/tmp/#{application}_init"
     run "chmod +x /tmp/#{application}_init"
     run "#{sudo} mv /tmp/#{application}_init /etc/init.d/#{application}"
-    run "#{sudo} chkconfig add #{application}"
+    run "#{sudo} chkconfig --add #{application}"
   end
   after "deploy:setup", "unicorn:setup"
 
