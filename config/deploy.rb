@@ -18,6 +18,7 @@ set :ssh_options, {:forward_agent => true}
 set :scm, "git"
 set :repository,  "git://github.com/pbruna/#{application}.git"
 set :branch, "master"
+set :bundle_flags, "--deployment --quiet --binstubs"
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
