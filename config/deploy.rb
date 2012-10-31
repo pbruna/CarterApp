@@ -6,6 +6,16 @@ load "config/recipes/check"
 
 set :gateway, "pbruna@gorgory.itlinux.cl"
 
+##########################################################
+# Configuration for delayed_job
+require "delayed/recipes"
+set :rails_env, "production"
+set :delayed_job_args, "-n 2"
+after "deploy:stop",    "delayed_job:stop"
+after "deploy:start",   "delayed_job:start"
+after "deploy:restart", "delayed_job:restart"
+##########################################################
+
 server "console.carterapp.com", :web, :app
 
 set :application, "CarterApp"
