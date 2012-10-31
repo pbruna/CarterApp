@@ -11,3 +11,7 @@ en:
         month_day_year: '%B %d, %Y'
         short_month_and_year: ! '%B de %Y'
         month_day: ! '%d/%m'
+  time:
+      formats:
+          time_only: '%H:%M:%S'
+
