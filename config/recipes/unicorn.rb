@@ -15,8 +15,6 @@ namespace :unicorn do
     run "chmod +x /tmp/#{application}_init"
     run "#{sudo} mv /tmp/#{application}_init /etc/init.d/#{application}"
     run "#{sudo} chkconfig --add #{application}"
-    run "ln -fs #{shared_path}/config/mongoid.yml #{current_path}/config/"
-    run "ln -fs #{shared_path}/config/initializers/smtp_config.rb #{current_path}/config/initializers/smtp_config.rb"
   end
   after "deploy:setup", "unicorn:setup"
 
