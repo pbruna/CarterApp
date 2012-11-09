@@ -12,7 +12,8 @@ module DashboardsHelper
   
   def show_percent(value,total)
     result = value.to_f * 100 / total.to_f 
-    "#{number_with_precision(result, :locale => "es-CL", :precision => 1)} %"
+    #{}"#{number_with_precision(result, :locale => "es-CL", :precision => 1)} %"
+    "PICO"
   end
   
 end
