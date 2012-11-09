@@ -1,5 +1,5 @@
 <div id="edit_account">
-	<h1><%= @account.name %></h1>
+	<h1><%= @account.name %> <small><%= @account.id%></small></h1>
 	<div class="input-append well" >
 		<%= simple_form_for @account, :html => {:class => "form-vertical edit_account", :method => :put} ,:remote => true do |f| %>
 			<%= f.error_notification %>
