@@ -16,6 +16,7 @@ class Request
   index "created_at" => 1
   index "account_id" => 1
   index "message_id" => 1
+  index "request_id" => 1
   
   scope :start_date, ->(date) { where(:created_at.gte => Time.parse(date).beginning_of_day.utc) }
   scope :end_date, ->(date) { where(:created_at.lte => Time.parse(date).end_of_day.utc) }
