@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
      if resource.sign_in_count == 1
           account_path(resource.account)
         else
-       stored_location_for(resource) || dashboard_path(resource)
+       stored_location_for(resource) || dashboards_path(resource)
      end
    end
    
