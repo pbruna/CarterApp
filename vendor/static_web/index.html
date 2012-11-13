@@ -111,6 +111,15 @@
 		padding-top: 35px;
 	}
 	
+	#wufoo-z7x3x5 {
+		height: 200px;
+		padding: 30px;
+	}
+	
+	#wufoo-z7x3x5 #wufooFormz7x3x5 {
+		height: 200px;
+	}
+	
 	</style>
 
 <div class="navbar">
@@ -228,32 +237,25 @@
 </div>
 
 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Inscripción</h3>
-  </div>
-  <div class="modal-body">
-    <p>Completa tus datos y te enviaremos la información para participar en la beta de CarterApp.</p>
-	<hr/>
-	<form class="form-horizontal" action="http://console.carterapp.com">
-	<div class="control-group">
-	    <label class="control-label" for="inputPassword">Nombre</label>
-	    <div class="controls">
-	      <input type="text" required="required" id="inputName" name="name" placeholder="Nombre Apellido">
-	    </div>
-	  </div>
-	  <div class="control-group">
-	    <label class="control-label" for="inputEmail">Email</label>
-	    <div class="controls">
-	      <input type="text" id="inputEmail" required="required" name="email" placeholder="email@example.com">
-	    </div>
-	  </div>
-  </div>
-  <div class="modal-footer">
-    <button class="btn" type="reset" data-dismiss="modal" aria-hidden="true">Cancelar</button>
-    <button type="submit" class="btn btn-primary">Enviar</button>
-  </div>
-  </form>
+  	<div id="wufoo-z7x3x5">
+		<h1>CarterApp Beta</h1>
+		<p>Completa tus datos y te enviaremos la información para participar en la beta de CarterApp.</p>
+		<a href="http://itlinux.wufoo.com/forms/z7x3x5">http://itlinux.wufoo.com/forms/z7x3x5</a>
+	</div>
+	<script type="text/javascript">var z7x3x5;(function(d, t) {
+	var s = d.createElement(t), options = {
+	'userName':'itlinux', 
+	'formHash':'z7x3x5', 
+	'autoResize':true,
+	'height':'284',
+	'async':true,
+	'header':'show'};
+	s.src = ('https:' == d.location.protocol ? 'https://' : 'http://') + 'wufoo.com/scripts/embed/form.js';
+	s.onload = s.onreadystatechange = function() {
+	var rs = this.readyState; if (rs) if (rs != 'complete') if (rs != 'loaded') return;
+	try { z7x3x5 = new WufooForm();z7x3x5.initialize(options);z7x3x5.display(); } catch (e) {}};
+	var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s, scr);
+	})(document, 'script');</script>
 </div>
 
 </body>
