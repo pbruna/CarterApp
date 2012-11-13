@@ -13,7 +13,7 @@ namespace :carterapp do
     run "ln -fs #{shared_path}/config/mongoid.yml #{current_path}/config/"
     run "ln -fs #{shared_path}/config/initializers/smtp_config.rb #{current_path}/config/initializers/smtp_config.rb"
   end
-  after "deploy", "carterapp:setup"
+  before "deploy:restart", "carterapp:setup"
 end
 
 namespace :deploy do
