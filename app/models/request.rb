@@ -54,6 +54,7 @@ class Request
     params.delete_if {|field, value| value.blank? }
     return [] if params.empty?
     base_criteria = where(account_id: account_id)
+    base_criteria.extras(:hint => {:account_id => 1})
     params.each do |field, value|
       criteria = Request.send(field, value.rstrip) # Remove ending whitespaces for v
       base_criteria.merge! criteria if criteria
