@@ -151,7 +151,10 @@ $ cp /home/carter/App/CarterApp/config/carterapp_nginx.conf /etc/nginx/conf.d/
 $ service nginx restart
 ```
 
-
+### Subir servicio CarterApp
+```bash
+$ service CarterApp restart
+```
 
 ### Envío de Correos
 El sistema envía varios correos con notificaciones. Para que los correos sean despachados correctamente se deben configurar las opciones del archivo ./config/initializers/smtp_config.rb.
