@@ -28,6 +28,8 @@ $ rvm gemset create rails3
 4. Como usuario carter y dentro del directorio /home/carter/App/CarterApp ejecutar:
 ```bash
 $ bundle install
+$ bundle install --binstubs
+$ mkdir /home/carter/App/CarterApp/pids/
 ```
 
 
@@ -153,6 +155,7 @@ $ service nginx restart
 
 ### Subir servicio CarterApp
 ```bash
+$ chmod +x /etc/init.d/CarterApp
 $ service CarterApp restart
 ```
 
