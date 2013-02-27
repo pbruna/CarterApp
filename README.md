@@ -131,6 +131,20 @@ reopen-logs)
 esac
 ```
 
+### Configuración DB
+Crear archivo /home/carter/App/CarterApp/config/mongoid.yml
+```yaml
+production:
+  sessions:
+    default:
+      database: carterapp
+      hosts:
+        - localhost:27017
+      options:
+        consistency: :strong
+  options:
+```
+
 ### Nginx
 ```bash
 $ cp /home/carter/App/CarterApp/config/carterapp_nginx.conf /etc/nginx/conf.d/
