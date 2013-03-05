@@ -2,7 +2,7 @@
 
 1. Descargar la apliación
 ```bash
-$ git clone git://github.com/pbruna/CarterApp.git
+$ git clone https://github.com/pbruna/CarterApp.git
 ```
 
 2. Copiar directorio contenido de directorio CarterApp a /home/carter/App/
