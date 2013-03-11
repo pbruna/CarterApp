@@ -159,6 +159,19 @@ $ chmod +x /etc/init.d/CarterApp
 $ service CarterApp restart
 ```
 
+### Crear assets
+Como usuario carter y en la raíz de la aplicación
+```bash
+$ RAILS_ENV=production rake assets:precompile
+```
+
+### Crear índices de la BD
+Como usuario carter y en la raíz de la aplicación
+```bash
+$ RAILS_ENV=production rake db:mongoid:create_indexes
+```
+
+
 ### Envío de Correos
 El sistema envía varios correos con notificaciones. Para que los correos sean despachados correctamente se deben configurar las opciones del archivo ./config/initializers/smtp_config.rb.
 En el software viene el archivo ./config/initializers/smtp_config.rb.sample que puede ser usado como ejemplo
