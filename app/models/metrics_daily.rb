@@ -31,12 +31,16 @@ class MetricsDaily
     month_date = Time.now.months_ago(Time.now.month - month)
     bson_start_time = time_to_bson(month_date.beginning_of_month)
     bson_end_time = time_to_bson(month_date.end_of_month)
-    result = where(:account_id => account).gte(:_id => bson_start_time)
+    begin
+       result = where(:account_id => account).gte(:_id => bson_start_time)
              .lte(:_id => bson_end_time).only(:sent_qty, :sent_failed_qty, :date, :_id, :blocked_qty)
-    result.each do |r|
-      ary << {date: Date.parse(r.date), sent_qty: r.sent_qty, sent_failed_qty: r.sent_failed_qty, blocked_qty: r.blocked_qty }
-    end
-    ary
+       result.each do |r|
+         ary << {date: Date.parse(r.date), sent_qty: r.sent_qty, sent_failed_qty: r.sent_failed_qty, blocked_qty: r.blocked_qty }
+       end
+       ary
+   rescue Exception => e
+       nil
+   end
   end
 
   def dst_emails_count

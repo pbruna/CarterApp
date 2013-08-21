@@ -27,7 +27,7 @@ class Request
   
   def self.last_for_account(account_id, qty = DEFAULT_PAGE_LIMIT)
     begin
-      where(account_id: account_id).sort(:_id => -1).limit(qty).to_a
+      where(account_id: account_id).sort(:_id => -1).limit(qty).to_a.reject!{|e| e.queue_id == 'NOQUEUE'}
     rescue Exception => e
       []
     end
@@ -56,7 +56,7 @@ class Request
     params.delete_if {|field, value| value.blank? }
     return [] if params.empty?
     base_criteria = where(account_id: account_id)
-    base_criteria.extras(:hint => {:account_id => 1})
+    base_criteria.extras(:hint => {:account_id => 1}, :queue_id => {"$ne" => 'NOQUEUE'})
     params.each do |field, value|
       criteria = Request.send(field, value.rstrip) # Remove ending whitespaces for v
       base_criteria.merge! criteria if criteria
